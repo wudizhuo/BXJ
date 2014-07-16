@@ -48,8 +48,7 @@
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="fill_parent" >
-
-        <com.adsmogo.adview.AdsMogoLayout
+        <com.adsmogo.adview.AdsMogoLayout
             android:id="@+id/adsMogoView"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"

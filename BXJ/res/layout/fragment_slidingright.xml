@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:adsmogo="http://www.adsmogo.com"
+    android:id="@+id/fragment_slidingright"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/menu_bg"
+    android:gravity="center_horizontal"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:id="@+id/setting_night"
+        style="@style/setting_item" >
+
+        <TextView
+            style="@style/menu_text"
+            android:clickable="false"
+            android:gravity="center_vertical"
+            android:text="夜间模式" />
+
+        <ImageView
+            android:id="@+id/iv_setting_night"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/setting_close"
+            android:clickable="false" />
+    </RelativeLayout>
+
+    <include layout="@layout/divider_line_h" />
+
+    <TextView
+        android:id="@+id/tv_download"
+        style="@style/menu_text"
+        android:gravity="center"
+        android:text="离线下载（当前页面内容）" />
+
+    <include layout="@layout/divider_line_h" />
+
+    <TextView
+        android:id="@+id/tv_setting"
+        style="@style/menu_text"
+        android:gravity="center"
+        android:text="设置" />
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent" >
+
+        <com.adsmogo.adview.AdsMogoLayout
+            android:id="@+id/adsMogoView"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            adsmogo:appid="07098cca441b48e898cedd87eb226d5c" >
+        </com.adsmogo.adview.AdsMogoLayout>
+    </RelativeLayout>
+
+</LinearLayout>

@@ -1,0 +1,67 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:adsmogo="http://www.adsmogo.com"
+    android:id="@+id/fragment_slidingleft"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/menu_bg"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/tv_bxj"
+        style="@style/menu_text"
+        android:layout_marginLeft="10dp"
+        android:gravity="center_vertical"
+        android:minHeight="45dp"
+        android:text="步行街" />
+
+    <RelativeLayout
+        android:id="@+id/rl_bxj_light"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_marginLeft="20dp"
+        android:clickable="true"
+        android:gravity="center_vertical"
+        android:orientation="horizontal" >
+
+        <TextView
+            style="@style/menu_text"
+            android:clickable="false"
+            android:gravity="center_vertical"
+            android:text="只看亮贴"
+            android:textSize="15sp" />
+
+        <ImageView
+            android:id="@+id/iv_setting_light"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/setting_close"
+            android:clickable="false" />
+    </RelativeLayout>
+
+    <include layout="@layout/divider_line_h" />
+
+    <TextView
+        style="@style/menu_text"
+        android:layout_marginLeft="10dp"
+        android:gravity="center_vertical"
+        android:minHeight="45dp"
+        android:text="青年图摘"
+        android:visibility="gone" />
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent" >
+
+        <com.adsmogo.adview.AdsMogoLayout
+            android:id="@+id/adsMogoView"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            adsmogo:appid="07098cca441b48e898cedd87eb226d5c" >
+        </com.adsmogo.adview.AdsMogoLayout>
+    </RelativeLayout>
+
+</LinearLayout>

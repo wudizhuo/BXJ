@@ -2,13 +2,15 @@ package com.bxj;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 
 public class AppPreferences {
 	public static final String SHAREDPREFERENCES_NAME = "vancl_sp";
+	private static final String KEY_LAST_CHECK_UPDATE_TIME = "key_last_checkupdate_time";
 	public static SharedPreferences sPreferences;
 	static {
-		sPreferences = AppApplication.getContext().getSharedPreferences(
-				SHAREDPREFERENCES_NAME, Context.MODE_WORLD_WRITEABLE);
+		sPreferences = PreferenceManager
+				.getDefaultSharedPreferences(AppApplication.getContext());
 	}
 
 	// 保存离线下载文件的日期 用于判断之前的离线缓存是否删除
@@ -34,7 +36,7 @@ public class AppPreferences {
 	}
 
 	// 保存离线下载文件的日期 用于判断之前的离线缓存是否删除
-	
+
 	private static final String SETTING_BXJLIGHT = "setting_bxjlight";
 	private static final String SETTING_MODE_NIGHT = "setting_mode_night";
 	private static final String HAS_SLIDINGGUIDE = "has_slidingguide";
@@ -75,6 +77,18 @@ public class AppPreferences {
 	}
 
 	public static boolean setSettingModeNight(boolean value) {
-		return sPreferences.edit().putBoolean(SETTING_MODE_NIGHT, value).commit();
+		return sPreferences.edit().putBoolean(SETTING_MODE_NIGHT, value)
+				.commit();
+	}
+
+	public static long getLastCheckUpdateTime() {
+		return sPreferences.getLong(KEY_LAST_CHECK_UPDATE_TIME, 0);
+	}
+
+	public static void setLastCheckUpdateTime() {
+		sPreferences
+				.edit()
+				.putLong(KEY_LAST_CHECK_UPDATE_TIME, System.currentTimeMillis())
+				.commit();
 	}
 }

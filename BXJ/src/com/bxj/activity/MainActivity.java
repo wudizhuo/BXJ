@@ -13,11 +13,10 @@ import com.bxj.fragment.ContentBXJFragment;
 import com.bxj.fragment.SlidingMenuLeft;
 import com.bxj.fragment.SlidingMenuRight;
 import com.bxj.manager.StorageManager;
-import com.bxj.utils.LogUtil;
+import com.bxj.manager.UpdateMgr;
 import com.bxj.utils.SystemUtils;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu.OnClosedListener;
-import com.umeng.update.UmengUpdateAgent;
 
 public class MainActivity extends BaseActivity implements
 		SlidingMenuLeft.Callbacks {
@@ -78,14 +77,13 @@ public class MainActivity extends BaseActivity implements
 		NotificationManager mNotificationManager = (NotificationManager) AppApplication
 				.getContext().getSystemService(Context.NOTIFICATION_SERVICE);
 		mNotificationManager.cancel(R.layout.layout_menu_right);
-		runOnUiThread(new Runnable() {
+		slidingmenu.postDelayed(new Runnable() {
 
 			@Override
 			public void run() {
-				// 友盟检查更新服务
-				UmengUpdateAgent.update(MainActivity.this);
+				UpdateMgr.getInstance().checkUpdate();
 			}
-		});
+		},5 * 1000);
 	}
 
 	@Override

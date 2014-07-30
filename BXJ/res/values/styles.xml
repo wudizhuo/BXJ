@@ -11,6 +11,15 @@
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowAnimationStyle">@style/AnimationActivity</item>
     </style>
+    
+    <!-- 普通模式 -->
+    <style name="DefultTheme" parent="AppTheme">
+		
+    </style>
+    <!-- 夜间模式 -->
+    <style name="NightTheme" parent="AppTheme">
+
+    </style>
 
     <style name="LoadTheme" parent="AppTheme">
         <item name="android:windowBackground">@drawable/wallpaper</item>

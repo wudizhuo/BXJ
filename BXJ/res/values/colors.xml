@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <drawable name="content_bg">#fff</drawable>
-    <drawable name="menu_bg">#3b3b3b</drawable>
-    <drawable name="title_bar_bg">#b92021</drawable>
-    <drawable name="page_bg">#EDF1F4</drawable>
+    <color name="content_bg">#fff</color>
+    <color name="menu_bg">#3b3b3b</color>
+    <color name="title_bar_bg">#b92021</color>
+    <color name="page_bg">#EDF1F4</color>
 
     <!-- 下面是友盟需要的配置 -->
     <color name="text_menu_press">#252525</color>

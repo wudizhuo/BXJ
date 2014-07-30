@@ -3,7 +3,7 @@
     android:id="@+id/fragment_slidingright"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/menu_bg"
+    android:background="@color/menu_bg"
     android:gravity="center_horizontal"
     android:orientation="vertical" >
 

@@ -2,7 +2,7 @@
     android:id="@+id/fragment_slidingleft"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/menu_bg"
+    android:background="@color/menu_bg"
     android:orientation="vertical" >
 
     <TextView

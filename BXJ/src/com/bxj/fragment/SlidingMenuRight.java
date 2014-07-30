@@ -12,7 +12,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout.LayoutParams;
 import android.widget.TextView;
 
-import com.adsmogo.adview.AdsMogoLayout;
 import com.bxj.AppConstants;
 import com.bxj.AppPreferences;
 import com.bxj.R;
@@ -53,8 +52,6 @@ public class SlidingMenuRight extends BaseFragment implements OnClickListener,
 		tv_setting.setOnClickListener(this);
 		view.findViewById(R.id.setting_night).setOnClickListener(this);
 		initBtn();
-		AdsMogoLayout adsMogoView = (AdsMogoLayout) view.findViewById(R.id.adsMogoView);
-		adsMogoView.downloadIsShowDialog = true;
 		return view;
 	}
 

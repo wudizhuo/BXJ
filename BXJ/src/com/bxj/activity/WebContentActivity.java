@@ -8,21 +8,14 @@ import java.io.InputStreamReader;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.GestureDetector;
-import android.view.MotionEvent;
-import android.view.View;
-import android.view.GestureDetector.SimpleOnGestureListener;
 import android.view.KeyEvent;
-import android.view.View.OnTouchListener;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.RelativeLayout;
 
-import com.adsmogo.adview.AdsMogoLayout;
 import com.bxj.AppConstants;
 import com.bxj.R;
 import com.bxj.common.BaseActivity;
@@ -48,7 +41,6 @@ public class WebContentActivity extends BaseActivity {
 	private WebView webView;// 用于显示的webview
 	private static final int SET_VIEW = 1;
 	private WebData webData;
-	private boolean hasAdd = false;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -66,51 +58,6 @@ public class WebContentActivity extends BaseActivity {
 		webView.getSettings().setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
 		webView.setWebViewClient(new LoadingWebViewClient());
 		getContent(webData);
-		adsMogoView = new AdsMogoLayout(this, AppConstants.MOGOID);
-		adsMogoView.downloadIsShowDialog = true;
-		mGestureDetector = new GestureDetector(this, new MyOnGestureListener());
-		webView.setOnTouchListener(new OnTouchListener() {
-
-			@Override
-			public boolean onTouch(View v, MotionEvent event) {
-				mGestureDetector.onTouchEvent(event);
-				return false;
-			}
-		});
-	}
-
-	class MyOnGestureListener extends SimpleOnGestureListener {
-		@Override
-		public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX,
-				float velocityY) {
-			// 滑动一半以上 加载广告
-			if ((webView.getHeight() + webView.getScrollY()) > webView
-					.getContentHeight() * webView.getScale() / 2) {
-				LogUtil.s("onFling");
-				if (!hasAdd) {
-					addAD();
-					hasAdd = true;
-				}
-			}
-			return super.onFling(e1, e2, velocityX, velocityY);
-		}
-	}
-
-	/**
-	 * 添加广告
-	 */
-	private void addAD() {
-		LogUtil.s("添加广告中");
-		RelativeLayout.LayoutParams parentLayputParams = new RelativeLayout.LayoutParams(
-				RelativeLayout.LayoutParams.FILL_PARENT,
-				RelativeLayout.LayoutParams.FILL_PARENT);
-		RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(
-				RelativeLayout.LayoutParams.FILL_PARENT,
-				RelativeLayout.LayoutParams.WRAP_CONTENT);
-		layoutParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM,
-				RelativeLayout.TRUE);
-		((RelativeLayout) mPullRefreshWebView.getParent()).addView(adsMogoView,
-				layoutParams);
 	}
 
 	OnRefreshListener<WebView> onRefreshListener = new OnRefreshListener<WebView>() {
@@ -125,7 +72,6 @@ public class WebContentActivity extends BaseActivity {
 			}
 		}
 	};
-	private AdsMogoLayout adsMogoView;
 	private GestureDetector mGestureDetector;
 
 	private class LoadingWebViewClient extends WebViewClient {

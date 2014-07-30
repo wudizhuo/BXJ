@@ -1,5 +1,4 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:adsmogo="http://www.adsmogo.com"
     android:id="@+id/fragment_slidingleft"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -50,18 +49,5 @@
         android:minHeight="45dp"
         android:text="青年图摘"
         android:visibility="gone" />
-
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="fill_parent" >
-
-        <com.adsmogo.adview.AdsMogoLayout
-            android:id="@+id/adsMogoView"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            adsmogo:appid="07098cca441b48e898cedd87eb226d5c" >
-        </com.adsmogo.adview.AdsMogoLayout>
-    </RelativeLayout>
 
 </LinearLayout>

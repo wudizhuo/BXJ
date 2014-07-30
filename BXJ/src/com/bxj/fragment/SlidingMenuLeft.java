@@ -9,13 +9,11 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout.LayoutParams;
 
-import com.adsmogo.adview.AdsMogoLayout;
 import com.bxj.AppConstants;
 import com.bxj.AppPreferences;
 import com.bxj.R;
 import com.bxj.common.BaseFragment;
 import com.bxj.utils.LogUtil;
-import com.bxj.utils.ToastUtil;
 
 public class SlidingMenuLeft extends BaseFragment implements OnClickListener {
 	private Callbacks mCallbacks;
@@ -40,9 +38,6 @@ public class SlidingMenuLeft extends BaseFragment implements OnClickListener {
 		view.findViewById(R.id.rl_bxj_light).setOnClickListener(this);
 		initBtn();
 
-		AdsMogoLayout adsMogoView = (AdsMogoLayout) view
-				.findViewById(R.id.adsMogoView);
-		adsMogoView.downloadIsShowDialog = true;
 		return view;
 	}
 

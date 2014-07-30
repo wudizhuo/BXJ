@@ -34,8 +34,6 @@ public class AppApplication extends Application {
 		//检查友盟的res是否都复制进去了
 		UmengUpdateAgent.setUpdateCheckConfig(false);
 		getOnlineValue();
-		// 芒果广告的debug模式
-		com.adsmogo.util.L.debug = BuildConfig.DEBUG;
 	}
 
 	/**

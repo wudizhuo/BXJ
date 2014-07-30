@@ -5,7 +5,6 @@ import android.content.Context;
 import android.os.Bundle;
 import android.widget.Toast;
 
-import com.adsmogo.adview.AdsMogoLayout;
 import com.bxj.AppApplication;
 import com.bxj.R;
 import com.bxj.common.BaseActivity;
@@ -120,7 +119,6 @@ public class MainActivity extends BaseActivity implements
 
 	@Override
 	protected void onDestroy() {
-		AdsMogoLayout.clear();
 		super.onDestroy();
 	}
 

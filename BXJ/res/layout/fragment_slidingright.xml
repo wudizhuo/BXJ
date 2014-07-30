@@ -34,7 +34,7 @@
         android:id="@+id/tv_download"
         style="@style/menu_text"
         android:gravity="center"
-        android:text="离线下载（当前页面内容）" />
+        android:text="离线下载" />
 
     <include layout="@layout/divider_line_h" />
 

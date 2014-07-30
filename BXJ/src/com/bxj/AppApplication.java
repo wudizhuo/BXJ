@@ -31,7 +31,7 @@ public class AppApplication extends Application {
 		MobclickAgent.setDebugMode(BuildConfig.DEBUG);
 		// 使用在线配置功能
 		MobclickAgent.updateOnlineConfig(getContext());
-		//检查友盟的res是否都复制进去了
+		// 检查友盟的res是否都复制进去了
 		UmengUpdateAgent.setUpdateCheckConfig(false);
 		getOnlineValue();
 	}

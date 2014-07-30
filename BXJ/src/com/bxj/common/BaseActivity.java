@@ -1,5 +1,7 @@
 package com.bxj.common;
 
+import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.text.TextUtils;
@@ -8,6 +10,8 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.bxj.AppConstants;
+import com.bxj.AppPreferences;
 import com.bxj.R;
 import com.bxj.utils.LogUtil;
 import com.bxj.view.CustomerProgressDialog;
@@ -26,6 +30,13 @@ public abstract class BaseActivity extends FragmentActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		if (AppPreferences.getSettingBxjLight()) {
+			setTheme(R.style.NightTheme);
+			LogUtil.s("BaseActivity---setTheme----NightTheme");
+		} else {
+			setTheme(R.style.DefultTheme);
+			LogUtil.s("BaseActivity---setTheme----DefultTheme");
+		}
 		getIntentParams();
 	}
 
@@ -119,6 +130,17 @@ public abstract class BaseActivity extends FragmentActivity {
 
 	public Button getRightBtn() {
 		return btn_title_right;
+	}
+
+	@SuppressLint("NewApi")
+	public void recreateForTheme() {
+
+		if (android.os.Build.VERSION.SDK_INT >= 11) {
+			this.recreate();
+		} else {
+			this.finish();
+			startActivity(new Intent(this, this.getClass()));
+		}
 	}
 
 }

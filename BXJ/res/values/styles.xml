@@ -14,11 +14,11 @@
     
     <!-- 普通模式 -->
     <style name="DefultTheme" parent="AppTheme">
-		
+        <item name="content_bg">@color/content_bg</item>
     </style>
     <!-- 夜间模式 -->
     <style name="NightTheme" parent="AppTheme">
-
+        <item name="content_bg">@color/content_bg_night</item>
     </style>
 
     <style name="LoadTheme" parent="AppTheme">
@@ -118,5 +118,21 @@
 
     <style name="ActionBarProgressBar" parent="@android:style/Widget.ProgressBar.Small"></style>
     <!-- 上面是友盟需要的配置 -->
+
+	<!-- 自适应宽高 -->
+    <style name="wrap">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+    <!-- 宽全屏，高自适应 -->
+    <style name="fill_width">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+    <!-- 宽、高全屏 -->
+    <style name="fill">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">fill_parent</item>
+    </style>
 
 </resources>

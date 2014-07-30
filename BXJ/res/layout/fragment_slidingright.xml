@@ -9,12 +9,13 @@
 
     <RelativeLayout
         android:id="@+id/setting_night"
-        style="@style/setting_item" >
+        style="@style/wrap" >
 
         <TextView
             style="@style/menu_text"
             android:clickable="false"
             android:gravity="center_vertical"
+            android:paddingLeft="15dp"
             android:text="夜间模式" />
 
         <ImageView

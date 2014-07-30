@@ -12,11 +12,13 @@ import android.widget.ImageView;
 import android.widget.LinearLayout.LayoutParams;
 import android.widget.TextView;
 
+import com.bxj.AppApplication;
 import com.bxj.AppConstants;
 import com.bxj.AppPreferences;
 import com.bxj.R;
 import com.bxj.activity.MainActivity;
 import com.bxj.activity.SettingActivity;
+import com.bxj.common.BaseActivity;
 import com.bxj.common.BaseFragment;
 import com.bxj.domain.BXJListData;
 import com.bxj.manager.DownLoadMgr;
@@ -84,11 +86,10 @@ public class SlidingMenuRight extends BaseFragment implements OnClickListener,
 	 * 点击夜间模式的点击事件
 	 */
 	private void clickNightMode() {
-		ToastUtil.show("夜间模式还没有做好哦，请关注下一版本");
 		AppConstants.SETTING_MODE_NIGHT = !AppConstants.SETTING_MODE_NIGHT;
 		initBtn();
 		AppPreferences.setSettingBxjLight(AppConstants.SETTING_MODE_NIGHT);
-		// TODO code 夜间模式them
+		//TODO onResume() code 响应代码   查看为什么开关初始化 不生效  找bug
 	}
 
 	private void initBtn() {

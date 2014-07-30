@@ -18,4 +18,9 @@
     <declare-styleable name="ActionBar">
 		<attr name="title" format="color" localization="suggested" /> 
     </declare-styleable>
+    
+    <declare-styleable name="Theme">
+		<attr name="content_bg" format="color|reference" /> 
+    </declare-styleable>
+    
 </resources>

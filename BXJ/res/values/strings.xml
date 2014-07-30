@@ -7,7 +7,7 @@
     <string name="title_bxj">步行街</string>
     <string name="notification_title">离线下载完成</string>
     <string name="notification_content">无网络信号时您也可以浏览了</string>
-    <string name="notiy_net_errer">网络未连接并且没有这个帖子的离线缓存 好伤心</string>
+    <string name="notiy_net_errer">网络未连接并且没有此内容的离线缓存</string>
     <string name="exit_notiy">再按一次退出程序</string>
     <string name="feedback_hint">欢迎在这发表宝贵意见哦~ \n您每一条意见都会看到并采取的，也可以到微博下（微博地址在关于页面）留言呀。</string>
     <string name="input_invaild">输入不能为空</string>

@@ -20,7 +20,9 @@
     </declare-styleable>
     
     <declare-styleable name="Theme">
+		<attr name="page_bg" format="color|reference" /> 
 		<attr name="content_bg" format="color|reference" /> 
+		<attr name="title_bar_bg" format="color|reference" /> 
     </declare-styleable>
     
 </resources>

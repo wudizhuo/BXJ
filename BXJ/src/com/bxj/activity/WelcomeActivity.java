@@ -18,7 +18,7 @@ import com.bxj.utils.LogUtil;
  */
 public class WelcomeActivity extends BaseActivity {
 
-	private int SHOW_TIME = 2500;
+	private int SHOW_TIME = 1000;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

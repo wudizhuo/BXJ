@@ -2,6 +2,7 @@ package com.bxj.fragment;
 
 import java.util.List;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -88,8 +89,13 @@ public class SlidingMenuRight extends BaseFragment implements OnClickListener,
 	private void clickNightMode() {
 		AppConstants.SETTING_MODE_NIGHT = !AppConstants.SETTING_MODE_NIGHT;
 		initBtn();
-		AppPreferences.setSettingBxjLight(AppConstants.SETTING_MODE_NIGHT);
-		//TODO onResume() code 响应代码   查看为什么开关初始化 不生效  找bug
+		AppPreferences.setSettingModeNight(AppConstants.SETTING_MODE_NIGHT);
+		((BaseActivity)getActivity()).setTheme();
+		getActivity().finish();
+		getActivity().overridePendingTransition(0, 0);
+		Intent intent = getActivity().getIntent();
+		intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+		getActivity().startActivity(intent);
 	}
 
 	private void initBtn() {

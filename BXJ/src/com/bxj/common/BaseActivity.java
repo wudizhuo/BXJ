@@ -30,16 +30,20 @@ public abstract class BaseActivity extends FragmentActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		if (AppPreferences.getSettingBxjLight()) {
+		setTheme();
+		getIntentParams();
+	}
+
+	public void setTheme() {
+		if (AppPreferences.getSettingModeNight()) {
 			setTheme(R.style.NightTheme);
 			LogUtil.s("BaseActivity---setTheme----NightTheme");
 		} else {
 			setTheme(R.style.DefultTheme);
 			LogUtil.s("BaseActivity---setTheme----DefultTheme");
 		}
-		getIntentParams();
 	}
-
+	
 	public void setRightBtnText(CharSequence text) {
 		btn_title_right = (Button) findViewById(R.id.btn_title_right);
 		if (btn_title_right != null) {
@@ -130,17 +134,6 @@ public abstract class BaseActivity extends FragmentActivity {
 
 	public Button getRightBtn() {
 		return btn_title_right;
-	}
-
-	@SuppressLint("NewApi")
-	public void recreateForTheme() {
-
-		if (android.os.Build.VERSION.SDK_INT >= 11) {
-			this.recreate();
-		} else {
-			this.finish();
-			startActivity(new Intent(this, this.getClass()));
-		}
 	}
 
 }

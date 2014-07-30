@@ -2,11 +2,10 @@
 <resources>
 
     <color name="content_bg">#fff</color>
-    <color name="content_bg_night">#000</color>
     <color name="menu_bg">#3b3b3b</color>
     <color name="title_bar_bg">#b92021</color>
     <color name="page_bg">#EDF1F4</color>
-
+    
     <!-- 下面是友盟需要的配置 -->
     <color name="text_menu_press">#252525</color>
     <color name="body_text_1">#ff000000</color>

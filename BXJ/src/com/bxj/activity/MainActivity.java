@@ -3,6 +3,9 @@ package com.bxj.activity;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.os.Bundle;
+import android.text.Layout;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.Toast;
 
 import com.bxj.AppApplication;
@@ -29,7 +32,6 @@ public class MainActivity extends BaseActivity implements
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);
 		// set the Above View
 		if (savedInstanceState != null)
 			contentFragment = (ContentBXJFragment) getSupportFragmentManager()
@@ -82,7 +84,7 @@ public class MainActivity extends BaseActivity implements
 			public void run() {
 				UpdateMgr.getInstance().checkUpdate();
 			}
-		},5 * 1000);
+		}, 5 * 1000);
 	}
 
 	@Override

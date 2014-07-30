@@ -37,6 +37,6 @@
         android:gravity="bottom"
         android:lineSpacingExtra="2sp"
         android:paddingBottom="20dp"
-        android:text=" 作者： 无敌卓 \n 虎扑帐号： 默默去AI \n 新浪微博：http://weibo.com/wudizhuo \n 邮箱：wudizhuo@gmail.com \n\n 欢迎私信联系" />
+        android:text=" 作者： 无敌卓 \n 邮箱：sunzhuo1228@126.com \n \n 如有APP开发合作 欢迎邮件联系" />
 
 </RelativeLayout>

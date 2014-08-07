@@ -24,22 +24,32 @@
         android:theme="@style/DefultTheme" >
         <activity
             android:name="com.bxj.activity.WelcomeActivity"
-            android:label="@string/app_name" 
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
-            >
+            android:label="@string/app_name"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.bxj.activity.MainActivity" />
-        <activity android:name="com.bxj.activity.SettingActivity" />
-        <activity android:name="com.bxj.activity.WebContentActivity" />
-        <activity android:name="com.bxj.activity.FeedBcakActivity" />
-        <activity android:name="com.bxj.activity.AboutActivity" />
-        <activity android:name="com.bxj.activity.SecondWebActivity" />
-
+        <activity
+            android:name="com.bxj.activity.MainActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.bxj.activity.SettingActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.bxj.activity.WebContentActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.bxj.activity.FeedBcakActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.bxj.activity.AboutActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.bxj.activity.SecondWebActivity"
+            android:screenOrientation="portrait" />
 
         <!-- 友盟插件 -->
         <meta-data

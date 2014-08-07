@@ -1,19 +1,21 @@
 package com.bxj.common;
 
-import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.text.TextUtils;
+import android.view.GestureDetector.OnGestureListener;
+import android.view.GestureDetector.SimpleOnGestureListener;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import com.bxj.AppConstants;
 import com.bxj.AppPreferences;
 import com.bxj.R;
 import com.bxj.utils.LogUtil;
+import com.bxj.utils.ToastUtil;
 import com.bxj.view.CustomerProgressDialog;
 import com.umeng.analytics.MobclickAgent;
 
@@ -22,6 +24,9 @@ public abstract class BaseActivity extends FragmentActivity {
 	private CustomerProgressDialog progressDialog;
 	private Button btn_title_left;
 	private Button btn_title_right;
+	private int swipeMinDistance = 80;
+	private GestureDetector mGestureDetector;
+	private boolean isAllowSwipeFinsh = true;
 
 	/** 获取intent附加数据 */
 	protected void getIntentParams() {
@@ -34,6 +39,42 @@ public abstract class BaseActivity extends FragmentActivity {
 		getIntentParams();
 	}
 
+	@Override
+	protected void onStart() {
+		super.onStart();
+		if (isAllowSwipeFinsh) {
+			mGestureDetector = new GestureDetector(this, gestureListener);
+		}
+	}
+
+	/**
+	 * 设置是否允许滑动屏幕返回
+	 */
+	protected void setAllowSwipeFinsh(boolean isAllowSwipeFinsh) {
+		this.isAllowSwipeFinsh = isAllowSwipeFinsh;
+	}
+
+	SimpleOnGestureListener gestureListener = new SimpleOnGestureListener() {
+		@Override
+		public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX,
+				float velocityY) {
+			if (e2.getX() - e1.getX() > swipeMinDistance
+					&& (Math.abs(e2.getX() - e1.getX())/4 > Math.abs(e1.getY()
+							- e2.getY())) && Math.abs(velocityX) > 0) {
+				BaseActivity.this.onBackPressed();
+			}
+			return false;
+		}
+	};
+
+	public boolean onTouchEvent(MotionEvent event) {
+		if (isAllowSwipeFinsh) {
+			return mGestureDetector.onTouchEvent(event);
+		} else {
+			return super.onTouchEvent(event);
+		}
+	};
+
 	public void setTheme() {
 		if (AppPreferences.getSettingModeNight()) {
 			setTheme(R.style.NightTheme);
@@ -43,7 +84,7 @@ public abstract class BaseActivity extends FragmentActivity {
 			LogUtil.s("BaseActivity---setTheme----DefultTheme");
 		}
 	}
-	
+
 	public void setRightBtnText(CharSequence text) {
 		btn_title_right = (Button) findViewById(R.id.btn_title_right);
 		if (btn_title_right != null) {
@@ -80,7 +121,9 @@ public abstract class BaseActivity extends FragmentActivity {
 		if (!TextUtils.isEmpty(msg)) {
 			progressDialog.setMessage(msg);
 		}
-		progressDialog.show();
+		if (!this.isFinishing()) {
+			progressDialog.show();
+		}
 	}
 
 	/**

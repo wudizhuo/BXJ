@@ -1,6 +1,6 @@
 package com.bxj.utils;
 
-import android.util.Log;
+import android.view.Gravity;
 import android.widget.Toast;
 
 import com.bxj.AppApplication;
@@ -33,6 +33,22 @@ public class ToastUtil {
 		if (DEBUG) {
 			Toast.makeText(AppApplication.getContext(), resId, 0).show();
 		}
+	}
+	
+	public static void showInCenter(CharSequence text) {
+		if (text == null)
+			return;
+		Toast toast = Toast.makeText(AppApplication.getContext(), text, Toast.LENGTH_SHORT);
+		toast.setGravity(Gravity.CENTER, 0, 0);
+		toast.show();
+	}
+
+	public static void showLongTimeInCenter(CharSequence text) {
+		if (text == null)
+			return;
+		Toast toast = Toast.makeText(AppApplication.getContext(), text, Toast.LENGTH_LONG);
+		toast.setGravity(Gravity.CENTER, 0, 0);
+		toast.show();
 	}
 
 }

@@ -40,6 +40,8 @@ public class MainActivity extends BaseActivity implements
 			contentFragment = new ContentBXJFragment();
 		}
 		setContentView(R.layout.activity_main);
+		setAllowSwipeFinsh(false);
+		
 		// 没有内存卡就弹窗退出
 		if (!StorageManager.getInstance().existSDcard()) {
 			SystemUtils.checkSDcardDlg(this);

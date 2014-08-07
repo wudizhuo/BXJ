@@ -33,6 +33,7 @@ public class AppApplication extends Application {
 		MobclickAgent.updateOnlineConfig(getContext());
 		// 检查友盟的res是否都复制进去了
 		UmengUpdateAgent.setUpdateCheckConfig(false);
+		UmengUpdateAgent.setUpdateOnlyWifi(false);
 		getOnlineValue();
 	}
 

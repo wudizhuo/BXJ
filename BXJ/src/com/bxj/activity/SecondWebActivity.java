@@ -6,13 +6,16 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.KeyEvent;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.View.OnTouchListener;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 import com.bxj.R;
 import com.bxj.common.BaseActivity;
 
-public class SecondWebActivity extends BaseActivity {
+public class SecondWebActivity extends BaseActivity implements OnTouchListener {
 	private WebView webview;
 	private String url;
 
@@ -25,6 +28,7 @@ public class SecondWebActivity extends BaseActivity {
 		if (!TextUtils.isEmpty(url)) {
 			webview.loadUrl(url);
 		}
+		webview.setOnTouchListener(this);
 	}
 
 	@Override
@@ -67,5 +71,10 @@ public class SecondWebActivity extends BaseActivity {
 			return true;
 		}
 		return super.onKeyDown(keyCode, event);
+	}
+
+	@Override
+	public boolean onTouch(View v, MotionEvent event) {
+		return onTouchEvent(event);
 	}
 }

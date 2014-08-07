@@ -12,6 +12,9 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.GestureDetector;
 import android.view.KeyEvent;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.View.OnTouchListener;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -35,7 +38,7 @@ import com.handmark.pulltorefresh.library.PullToRefreshWebView;
  * @author SunZhuo
  * 
  */
-public class WebContentActivity extends BaseActivity {
+public class WebContentActivity extends BaseActivity implements OnTouchListener{
 	private String webContent;// 显示的网页的本地内容
 	private PullToRefreshWebView mPullRefreshWebView;
 	private WebView webView;// 用于显示的webview
@@ -50,13 +53,13 @@ public class WebContentActivity extends BaseActivity {
 		mPullRefreshWebView = (PullToRefreshWebView) findViewById(R.id.webcontent_wb);
 		mPullRefreshWebView.setOnRefreshListener(onRefreshListener);
 		webView = mPullRefreshWebView.getRefreshableView();
-		webView.setFocusable(true);// 设置触摸焦点起作用
 		webView.getSettings().setJavaScriptEnabled(true);// 支持js脚本
 		webView.getSettings().setPluginState(WebSettings.PluginState.ON);// 设置不支持插件
 		// mWebView.getSettings().setSupportZoom(true);// 支持缩放
 		webView.getSettings().setUseWideViewPort(true);// 支持不同的分辨率
 		webView.getSettings().setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
 		webView.setWebViewClient(new LoadingWebViewClient());
+		webView.setOnTouchListener(this);
 		getContent(webData);
 	}
 
@@ -72,7 +75,6 @@ public class WebContentActivity extends BaseActivity {
 			}
 		}
 	};
-	private GestureDetector mGestureDetector;
 
 	private class LoadingWebViewClient extends WebViewClient {
 		@Override
@@ -190,6 +192,11 @@ public class WebContentActivity extends BaseActivity {
 	public void onBackPressed() {
 		LogUtil.s("点击了返回");
 		super.onBackPressed();
+	}
+
+	@Override
+	public boolean onTouch(View v, MotionEvent event) {
+		return onTouchEvent(event);
 	}
 
 }

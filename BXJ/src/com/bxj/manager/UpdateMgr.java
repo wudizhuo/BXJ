@@ -32,8 +32,7 @@ public class UpdateMgr {
 	public void checkUpdate() {
 		long checkTime = AppPreferences.getLastCheckUpdateTime() + 2 * 24 * 60
 				* 60 * 1000;
-		if (checkTime < System.currentTimeMillis()
-				&& NetUitl.getNetType() == NetUitl.WIFI) {
+		if (checkTime < System.currentTimeMillis()) {
 			// 友盟检查更新服务
 			UmengUpdateAgent.forceUpdate(AppApplication.getContext());
 			AppPreferences.setLastCheckUpdateTime();

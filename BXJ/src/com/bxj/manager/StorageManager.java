@@ -2,7 +2,7 @@ package com.bxj.manager;
 
 import java.io.File;
 
-import com.bxj.AppApplication;
+import com.bxj.App;
 import com.bxj.AppConstants;
 import com.bxj.domain.WebData;
 
@@ -34,7 +34,7 @@ public class StorageManager {
 	public File getOfflineDataDir() {
 		File result = null;
 		result = new File(
-				AppApplication.getContext().getExternalFilesDir(null),
+				App.getContext().getExternalFilesDir(null),
 				AppConstants.OFFLINE_DIR);
 		if (!result.exists()) {
 			result.mkdirs();

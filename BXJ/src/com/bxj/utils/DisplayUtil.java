@@ -5,7 +5,7 @@ import android.content.Context;
 import android.graphics.Rect;
 import android.view.View;
 
-import com.bxj.AppApplication;
+import com.bxj.App;
 
 /**
  * Android大小单位转换工具类
@@ -22,7 +22,7 @@ public class DisplayUtil {
 	 * @return
 	 */
 	public static int getScreenWidth() {
-		return AppApplication.getContext().getResources().getDisplayMetrics().widthPixels;
+		return App.getContext().getResources().getDisplayMetrics().widthPixels;
 	}
 
 	/**
@@ -34,7 +34,7 @@ public class DisplayUtil {
 	public static int getScreenShowHeight(Activity context) {
 		Rect frame = new Rect();
 		context.getWindow().getDecorView().getWindowVisibleDisplayFrame(frame);
-		return AppApplication.getContext().getResources().getDisplayMetrics().heightPixels
+		return App.getContext().getResources().getDisplayMetrics().heightPixels
 				- frame.top;
 	}
 
@@ -45,7 +45,7 @@ public class DisplayUtil {
 	 * @return
 	 */
 	public static int getScreenHeight() {
-		return AppApplication.getContext().getResources().getDisplayMetrics().heightPixels;
+		return App.getContext().getResources().getDisplayMetrics().heightPixels;
 	}
 
 	/**

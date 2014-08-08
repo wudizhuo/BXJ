@@ -14,6 +14,7 @@ import android.webkit.WebViewClient;
 
 import com.bxj.R;
 import com.bxj.common.BaseActivity;
+import com.bxj.utils.LogUtil;
 
 public class SecondWebActivity extends BaseActivity implements OnTouchListener {
 	private WebView webview;
@@ -28,7 +29,10 @@ public class SecondWebActivity extends BaseActivity implements OnTouchListener {
 		if (!TextUtils.isEmpty(url)) {
 			webview.loadUrl(url);
 		}
-		webview.setOnTouchListener(this);
+		//如果是看大图则不用右滑关闭
+		if(!url.endsWith(".jpg")){
+			webview.setOnTouchListener(this);
+		}
 	}
 
 	@Override

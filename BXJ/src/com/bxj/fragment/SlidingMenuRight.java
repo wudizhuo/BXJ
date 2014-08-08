@@ -13,7 +13,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout.LayoutParams;
 import android.widget.TextView;
 
-import com.bxj.AppApplication;
+import com.bxj.App;
 import com.bxj.AppConstants;
 import com.bxj.AppPreferences;
 import com.bxj.R;
@@ -91,6 +91,7 @@ public class SlidingMenuRight extends BaseFragment implements OnClickListener,
 		initBtn();
 		AppPreferences.setSettingModeNight(AppConstants.SETTING_MODE_NIGHT);
 		((BaseActivity)getActivity()).setTheme();
+		AppConstants.isNeedRestore=true;
 		getActivity().finish();
 		getActivity().overridePendingTransition(0, 0);
 		Intent intent = getActivity().getIntent();

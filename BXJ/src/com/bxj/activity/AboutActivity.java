@@ -3,7 +3,7 @@ package com.bxj.activity;
 import android.os.Bundle;
 import android.widget.TextView;
 
-import com.bxj.AppApplication;
+import com.bxj.App;
 import com.bxj.R;
 import com.bxj.common.BaseActivity;
 
@@ -21,6 +21,6 @@ public class AboutActivity extends BaseActivity {
 		setContentView(R.layout.activity_about);
 		setTitleText("关于");
 		TextView tv_about_ver = (TextView) findViewById(R.id.tv_about_ver);
-		tv_about_ver.setText("版本号 : " + AppApplication.getVersionName());
+		tv_about_ver.setText("版本号 : " + App.getVersionName());
 	}
 }

@@ -49,7 +49,7 @@ public class ContentBXJFragment extends BaseFragment implements
 	// 表示是否是下拉刷新状态
 	public static Boolean ISREFRESHING = false;
 
-	private List<BXJListData> showDataList = new ArrayList<BXJListData>();
+	private static List<BXJListData> showDataList = new ArrayList<BXJListData>();
 	private List<BXJListData> dataList;
 	private ListView contentList;
 	private BxjListAdpter mAdpter;
@@ -72,13 +72,9 @@ public class ContentBXJFragment extends BaseFragment implements
 		pullToRefreshListView.setMode(Mode.BOTH);
 		pullToRefreshListView.setOnRefreshListener(this);
 		contentList = pullToRefreshListView.getRefreshableView();
-		return containerView;
-	}
-
-	private void init() {
 		INDEX = 1;
 		initTitle();
-		initContent();
+		return containerView;
 	}
 
 	private void initTitle() {
@@ -102,7 +98,13 @@ public class ContentBXJFragment extends BaseFragment implements
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
-		init();
+		if(AppConstants.isNeedRestore){
+			LogUtil.s("--onReInitContent---");
+			onReInitContent();
+		}else {
+			LogUtil.s("--initContent---");
+			initContent();
+		}
 	}
 
 	@Override
@@ -113,7 +115,7 @@ public class ContentBXJFragment extends BaseFragment implements
 
 	public void settingChanged() {
 		if (AppConstants.SETTING_CHANGED) {
-			initContent();
+			onReInitContent();
 			AppConstants.SETTING_CHANGED = !AppConstants.SETTING_CHANGED;
 		}
 	}
@@ -147,6 +149,18 @@ public class ContentBXJFragment extends BaseFragment implements
 			initContentFromNet();
 		} else {
 			initContentFromLocal();
+		}
+	}
+	
+	/**
+	 * 设置修改等 需要重新从本地加载新设置的内容
+	 */
+	private void onReInitContent() {
+		if (mAdpter == null) {
+			mAdpter = new BxjListAdpter(mContext, showDataList);
+			contentList.setAdapter(mAdpter);
+		} else {
+			mAdpter.notifyDataSetChanged();
 		}
 	}
 

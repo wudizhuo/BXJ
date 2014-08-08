@@ -5,7 +5,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.telephony.TelephonyManager;
 
-import com.bxj.AppApplication;
+import com.bxj.App;
 
 public class NetUitl {
 	public static String WIFI = "WIFI";
@@ -24,7 +24,7 @@ public class NetUitl {
 	 * @return
 	 */
 	public static boolean isConnected() {
-		NetworkInfo info = (NetworkInfo) ((ConnectivityManager) AppApplication
+		NetworkInfo info = (NetworkInfo) ((ConnectivityManager) App
 				.getContext().getSystemService(Context.CONNECTIVITY_SERVICE))
 				.getActiveNetworkInfo();
 
@@ -47,7 +47,7 @@ public class NetUitl {
 	 */
 	public static String getNetType() {
 		try {
-			ConnectivityManager pManager = (ConnectivityManager) AppApplication
+			ConnectivityManager pManager = (ConnectivityManager) App
 					.getContext()
 					.getSystemService(Context.CONNECTIVITY_SERVICE);
 			NetworkInfo networkInfo = pManager.getActiveNetworkInfo();

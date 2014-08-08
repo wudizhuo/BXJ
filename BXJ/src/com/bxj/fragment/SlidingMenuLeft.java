@@ -14,6 +14,7 @@ import com.bxj.AppPreferences;
 import com.bxj.R;
 import com.bxj.common.BaseFragment;
 import com.bxj.utils.LogUtil;
+import com.bxj.utils.ToastUtil;
 
 public class SlidingMenuLeft extends BaseFragment implements OnClickListener {
 	private Callbacks mCallbacks;
@@ -68,8 +69,10 @@ public class SlidingMenuLeft extends BaseFragment implements OnClickListener {
 			initBtn();
 			AppPreferences.setSettingBxjLight(AppConstants.SETTING_BXJ_LIGHT);
 			AppConstants.SETTING_CHANGED = true;
+			if(!AppConstants.SETTING_BXJ_LIGHT){
+				ToastUtil.showInCenter("刷新页面后生效");
+			}
 			break;
-
 		default:
 			break;
 		}

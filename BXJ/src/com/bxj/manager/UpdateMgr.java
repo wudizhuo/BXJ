@@ -1,6 +1,6 @@
 package com.bxj.manager;
 
-import com.bxj.AppApplication;
+import com.bxj.App;
 import com.bxj.AppPreferences;
 import com.bxj.utils.NetUitl;
 import com.umeng.update.UmengUpdateAgent;
@@ -34,7 +34,7 @@ public class UpdateMgr {
 				* 60 * 1000;
 		if (checkTime < System.currentTimeMillis()) {
 			// 友盟检查更新服务
-			UmengUpdateAgent.forceUpdate(AppApplication.getContext());
+			UmengUpdateAgent.forceUpdate(App.getContext());
 			AppPreferences.setLastCheckUpdateTime();
 		}
 	}

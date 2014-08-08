@@ -10,7 +10,7 @@ import android.view.View.OnClickListener;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
-import com.bxj.AppApplication;
+import com.bxj.App;
 import com.bxj.R;
 import com.bxj.common.BaseActivity;
 import com.bxj.utils.ToastUtil;
@@ -85,7 +85,7 @@ public class FeedBcakActivity extends BaseActivity {
 	 * @param data
 	 */
 	public static void saveData(String data) {
-		Editor edit = AppApplication.getContext()
+		Editor edit = App.getContext()
 				.getSharedPreferences(FEEDBACK, Context.MODE_PRIVATE).edit();
 
 		edit.putString(KEY_FOR_SUGGESTION, data);
@@ -96,7 +96,7 @@ public class FeedBcakActivity extends BaseActivity {
 	 * 获取数据
 	 */
 	public static String getData() {
-		SharedPreferences sharePre = AppApplication.getContext()
+		SharedPreferences sharePre = App.getContext()
 				.getSharedPreferences(FEEDBACK, Context.MODE_PRIVATE);
 		return sharePre.getString(KEY_FOR_SUGGESTION, INVAILD_STR);
 	}

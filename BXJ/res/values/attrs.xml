@@ -23,7 +23,7 @@
 		<attr name="page_bg" format="color|reference" /> 
 		<attr name="content_bg" format="color|reference" /> 
 		<attr name="title_bar_bg" format="color|reference" />
-		<attr name="list_divider_bg" format="color|reference" />
+		<attr name="list_divider_bg" format="reference" />
     </declare-styleable>
     
 </resources>

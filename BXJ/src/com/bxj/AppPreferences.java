@@ -10,7 +10,7 @@ public class AppPreferences {
 	public static SharedPreferences sPreferences;
 	static {
 		sPreferences = PreferenceManager
-				.getDefaultSharedPreferences(AppApplication.getContext());
+				.getDefaultSharedPreferences(App.getContext());
 	}
 
 	// 保存离线下载文件的日期 用于判断之前的离线缓存是否删除

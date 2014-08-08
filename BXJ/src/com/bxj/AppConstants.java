@@ -18,14 +18,8 @@ public class AppConstants {
 	public static Boolean SETTING_BXJ_LIGHT = false;
 	// 夜间模式
 	public static Boolean SETTING_MODE_NIGHT = false;
-	// 夜间模式对应的颜色
-	public static int MODE_NIGHT_PAGEBG_COLOR = 0x343434;
-	public static int MODE_NIGHT_TEXT_COLOR = 0xB8B8B8;
-	public static int MODE_DAY_PAGEBG_COLOR = 0xffffff;
-	public static int MODE_DAY_TEXT_COLOR = 0x3C3C3C;
-
-	public static int PAGEBG_COLOR = MODE_DAY_PAGEBG_COLOR;
-	public static int TEXT_COLOR = MODE_DAY_TEXT_COLOR;
+	// 主页面是否需要重新加载
+	public static boolean isNeedRestore = false;
 
 	public static void initConstants() {
 		SETTING_BXJ_LIGHT = AppPreferences.getSettingBxjLight();

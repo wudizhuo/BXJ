@@ -4,7 +4,7 @@ import java.util.Properties;
 
 import android.content.Context;
 
-import com.bxj.AppApplication;
+import com.bxj.App;
 import com.umeng.analytics.MobclickAgent;
 
 public class StatServiceUtil {
@@ -18,7 +18,7 @@ public class StatServiceUtil {
 	 *            事件标识 ID参考统计平台上注册的ID
 	 */
 	public static void trackEvent(String event_id) {
-		MobclickAgent.onEvent(AppApplication.getContext(), event_id);
+		MobclickAgent.onEvent(App.getContext(), event_id);
 	}
 
 	public static void trackEvent(Context mContext, String event_id) {

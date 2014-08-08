@@ -1,5 +1,6 @@
 package com.bxj.adpter;
 
+import java.util.Iterator;
 import java.util.List;
 
 import android.content.Context;
@@ -11,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import com.bxj.AppConstants;
 import com.bxj.R;
 import com.bxj.activity.WebContentActivity;
 import com.bxj.domain.BXJListData;
@@ -33,6 +35,30 @@ public class BxjListAdpter extends BaseAdapter {
 		this.list = list;
 		this.mContext = mContext;
 		mInflater = LayoutInflater.from(mContext);
+		filterContent();
+	}
+
+	@Override
+	public void notifyDataSetChanged() {
+		filterContent();
+		super.notifyDataSetChanged();
+	}
+
+	/**
+	 * 过滤内容 只看亮贴等过滤条件
+	 */
+	private void filterContent() {
+		LogUtil.s("---filterContent----");
+		// 如果设置为只看亮贴 则过滤内容 只显示亮贴
+		if (AppConstants.SETTING_BXJ_LIGHT) {
+			Iterator<BXJListData> iterator = list.iterator();
+			while (iterator.hasNext()) {
+				BXJListData data = (BXJListData) iterator.next();
+				if (data.getLightCount().equals("0")) {
+					iterator.remove();
+				}
+			}
+		}
 	}
 
 	@Override
@@ -83,7 +109,6 @@ public class BxjListAdpter extends BaseAdapter {
 						mContext, info));
 			}
 		});
-
 		return convertView;
 	}
 

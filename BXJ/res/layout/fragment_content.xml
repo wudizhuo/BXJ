@@ -10,6 +10,7 @@
     <com.handmark.pulltorefresh.library.PullToRefreshListView
         android:id="@+id/contentList"
         style="@style/list"
+        android:divider="?attr/list_divider_bg"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         ptrMode="both" />

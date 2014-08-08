@@ -12,7 +12,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 
-import com.bxj.AppApplication;
+import com.bxj.App;
 import com.bxj.R;
 import com.bxj.activity.MainActivity;
 import com.bxj.domain.WebData;
@@ -56,19 +56,19 @@ public class DownLoadTask extends AsyncTask<List<WebData>, Integer, Void> {
 	@Override
 	protected void onPostExecute(Void result) {
 		super.onPostExecute(result);
-		NotificationManager mNotificationManager = (NotificationManager) AppApplication
+		NotificationManager mNotificationManager = (NotificationManager) App
 				.getContext().getSystemService(Context.NOTIFICATION_SERVICE);
 		Notification notification = new Notification(R.drawable.app_icon, null,
 				System.currentTimeMillis());
-		Intent intent = new Intent(AppApplication.getContext(),
+		Intent intent = new Intent(App.getContext(),
 				MainActivity.class);
 		intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 		PendingIntent contentIntent = PendingIntent.getActivity(
-				AppApplication.getContext(), 0, intent,
+				App.getContext(), 0, intent,
 				PendingIntent.FLAG_CANCEL_CURRENT);
-		notification.setLatestEventInfo(AppApplication.getContext(),
-				AppApplication.getContext()
-						.getText(R.string.notification_title), AppApplication
+		notification.setLatestEventInfo(App.getContext(),
+				App.getContext()
+						.getText(R.string.notification_title), App
 						.getContext().getText(R.string.notification_content),
 				contentIntent);
 		// 以R.layout.layout_menu_right为ID 因为R文件不会重复

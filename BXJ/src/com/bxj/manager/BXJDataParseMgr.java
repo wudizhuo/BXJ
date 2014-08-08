@@ -65,12 +65,6 @@ public class BXJDataParseMgr {
 			data.setTitle(titleUrl.text());
 			// 回复的格式为 12/36 回复/浏览数 现在只取回复数
 			data.setReplyCount(replyCount.text().split("/")[0]);
-			// 如果设置为只看亮贴 则过滤内容 只显示亮贴
-			if (AppConstants.SETTING_BXJ_LIGHT) {
-				if (data.getLightCount().equals("0")) {
-					continue;
-				}
-			}
 			result.add(data);
 		}
 		return result;

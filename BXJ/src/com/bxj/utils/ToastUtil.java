@@ -3,7 +3,7 @@ package com.bxj.utils;
 import android.view.Gravity;
 import android.widget.Toast;
 
-import com.bxj.AppApplication;
+import com.bxj.App;
 import com.bxj.BuildConfig;
 
 /**
@@ -25,20 +25,20 @@ public class ToastUtil {
 		if (DEBUG) {
 			if (text == null)
 				return;
-			Toast.makeText(AppApplication.getContext(), text, 0).show();
+			Toast.makeText(App.getContext(), text, 0).show();
 		}
 	}
 
 	public static void show(int resId) {
 		if (DEBUG) {
-			Toast.makeText(AppApplication.getContext(), resId, 0).show();
+			Toast.makeText(App.getContext(), resId, 0).show();
 		}
 	}
 	
 	public static void showInCenter(CharSequence text) {
 		if (text == null)
 			return;
-		Toast toast = Toast.makeText(AppApplication.getContext(), text, Toast.LENGTH_SHORT);
+		Toast toast = Toast.makeText(App.getContext(), text, Toast.LENGTH_SHORT);
 		toast.setGravity(Gravity.CENTER, 0, 0);
 		toast.show();
 	}
@@ -46,7 +46,7 @@ public class ToastUtil {
 	public static void showLongTimeInCenter(CharSequence text) {
 		if (text == null)
 			return;
-		Toast toast = Toast.makeText(AppApplication.getContext(), text, Toast.LENGTH_LONG);
+		Toast toast = Toast.makeText(App.getContext(), text, Toast.LENGTH_LONG);
 		toast.setGravity(Gravity.CENTER, 0, 0);
 		toast.show();
 	}

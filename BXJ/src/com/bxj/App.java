@@ -10,7 +10,7 @@ import com.bxj.utils.LogUtil;
 import com.umeng.analytics.MobclickAgent;
 import com.umeng.update.UmengUpdateAgent;
 
-public class AppApplication extends Application {
+public class App extends Application {
 	private static Context applicationContext;
 
 	@Override

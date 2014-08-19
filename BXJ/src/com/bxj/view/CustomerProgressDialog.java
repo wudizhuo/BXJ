@@ -35,6 +35,7 @@ public class CustomerProgressDialog extends Dialog {
 		contentView = LayoutInflater.from(context).inflate(
 				R.layout.view_progress_indeterminate, null);
 		contentText = (TextView) contentView.findViewById(R.id.tv_msg);
+		setCanceledOnTouchOutside(false);
 		setContentView(contentView);
 	}
 

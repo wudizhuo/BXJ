@@ -2,7 +2,6 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
     <string name="app_name">步行街</string>
-    <string name="umeng_channel">木蚂蚁</string>
     <string name="action_settings">Settings</string>
     <string name="title_bxj">步行街</string>
     <string name="notification_title">离线下载完成</string>

@@ -3,19 +3,16 @@ package com.bxj.common;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.text.TextUtils;
-import android.view.GestureDetector.OnGestureListener;
-import android.view.GestureDetector.SimpleOnGestureListener;
 import android.view.GestureDetector;
+import android.view.GestureDetector.SimpleOnGestureListener;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bxj.AppPreferences;
 import com.bxj.R;
 import com.bxj.utils.LogUtil;
-import com.bxj.utils.ToastUtil;
 import com.bxj.view.CustomerProgressDialog;
 import com.umeng.analytics.MobclickAgent;
 
@@ -27,6 +24,7 @@ public abstract class BaseActivity extends FragmentActivity {
 	private int swipeMinDistance = 80;
 	private GestureDetector mGestureDetector;
 	private boolean isAllowSwipeFinsh = true;
+	private boolean progressOnShow = false;
 
 	/** 获取intent附加数据 */
 	protected void getIntentParams() {
@@ -117,12 +115,13 @@ public abstract class BaseActivity extends FragmentActivity {
 	 *            对话框显示的字体
 	 */
 	public void showProgressDialog(String msg) {
-		progressDialog = new CustomerProgressDialog(this);
-		if (!TextUtils.isEmpty(msg)) {
-			progressDialog.setMessage(msg);
-		}
-		if (!this.isFinishing()) {
+		if (!progressOnShow) {
+			progressDialog = new CustomerProgressDialog(this);
+			if (!TextUtils.isEmpty(msg)) {
+				progressDialog.setMessage(msg);
+			}
 			progressDialog.show();
+			progressOnShow = true;
 		}
 	}
 
@@ -137,8 +136,10 @@ public abstract class BaseActivity extends FragmentActivity {
 	 * 取消等待对话框
 	 */
 	public void dismissProgressDialog() {
-		if (progressDialog != null) {
+		if (!isFinishing() && progressDialog != null
+				&& progressDialog.isShowing()) {
 			progressDialog.dismiss();
+			progressOnShow = false;
 		}
 	}
 

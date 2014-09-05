@@ -32,7 +32,7 @@ public class BaseFragment extends Fragment {
 		this.getView().post(new Runnable() {
 			@Override
 			public void run() {
-				if (progressDialog == null) {
+				if (progressDialog == null && BaseFragment.this.isAdded()) {
 					progressDialog = new CustomerProgressDialog(
 							BaseFragment.this.getView().getContext());
 				}

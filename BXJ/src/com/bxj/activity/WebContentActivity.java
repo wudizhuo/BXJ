@@ -11,6 +11,10 @@ import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.KeyEvent;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.View.OnTouchListener;
+import android.view.WindowManager;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -34,7 +38,7 @@ import com.handmark.pulltorefresh.library.PullToRefreshWebView;
  * @author SunZhuo
  * 
  */
-public class WebContentActivity extends BaseActivity{
+public class WebContentActivity extends BaseActivity implements OnTouchListener{
 	private String webContent;// 显示的网页的本地内容
 	private PullToRefreshWebView mPullRefreshWebView;
 	private WebView webView;// 用于显示的webview
@@ -49,12 +53,25 @@ public class WebContentActivity extends BaseActivity{
 		mPullRefreshWebView = (PullToRefreshWebView) findViewById(R.id.webcontent_wb);
 		mPullRefreshWebView.setOnRefreshListener(onRefreshListener);
 		webView = mPullRefreshWebView.getRefreshableView();
-		webView.getSettings().setJavaScriptEnabled(true);// 支持js脚本
-		webView.getSettings().setSupportZoom(true);// 支持缩放
-		webView.getSettings().setUseWideViewPort(true);// 支持不同的分辨率
-		webView.getSettings().setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
+		webView.setOnTouchListener(this);
+		
+		WebSettings settings = webView.getSettings(); 
+		settings.setJavaScriptEnabled(true);// 支持js脚本
+		settings.setSupportZoom(true);// 支持缩放
+		settings.setUseWideViewPort(true);// 支持不同的分辨率
+		settings.setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
+		settings.setLoadWithOverviewMode(true);
+		
 		webView.setWebViewClient(new LoadingWebViewClient());
 		getContent(webData);
+		LogUtil.s("---url---"+webData.getUrl());
+		
+		View night_theme_view = findViewById(R.id.night_theme_view);
+		if(AppConstants.SETTING_MODE_NIGHT){
+			night_theme_view.setVisibility(View.VISIBLE);
+		}else {
+			night_theme_view.setVisibility(View.GONE);
+		}
 	}
 
 	OnRefreshListener<WebView> onRefreshListener = new OnRefreshListener<WebView>() {
@@ -182,10 +199,12 @@ public class WebContentActivity extends BaseActivity{
 		return super.onKeyDown(keyCode, event);
 	}
 
+	/**
+	 * 不能删除  保证右滑返回
+	 */
 	@Override
-	public void onBackPressed() {
-		LogUtil.s("点击了返回");
-		super.onBackPressed();
+	public boolean onTouch(View v, MotionEvent event) {
+		return super.onTouchEvent(event);
 	}
 
 }

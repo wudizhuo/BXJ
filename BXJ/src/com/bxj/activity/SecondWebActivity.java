@@ -12,6 +12,7 @@ import android.view.View.OnTouchListener;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
+import com.bxj.AppConstants;
 import com.bxj.R;
 import com.bxj.common.BaseActivity;
 import com.bxj.utils.LogUtil;
@@ -29,10 +30,19 @@ public class SecondWebActivity extends BaseActivity implements OnTouchListener {
 		if (!TextUtils.isEmpty(url)) {
 			webview.loadUrl(url);
 		}
+		LogUtil.s("---url---"+url);
 		//如果是看大图则不用右滑关闭
-		if(!url.endsWith(".jpg")){
+		if(!url.endsWith(".jpg")&&!url.endsWith(".gif")&&!url.endsWith(".png")){
 			webview.setOnTouchListener(this);
 		}
+		
+		View night_theme_view = findViewById(R.id.night_theme_view);
+		if(AppConstants.SETTING_MODE_NIGHT){
+			night_theme_view.setVisibility(View.VISIBLE);
+		}else {
+			night_theme_view.setVisibility(View.GONE);
+		}
+		
 	}
 
 	@Override

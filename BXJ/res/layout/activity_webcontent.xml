@@ -8,10 +8,21 @@
         android:id="@+id/title_bar"
         layout="@layout/title_bar" />
 
-    <com.handmark.pulltorefresh.library.PullToRefreshWebView
-        android:id="@+id/webcontent_wb"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_below="@+id/title_bar" />
+    <FrameLayout
+        style="@style/fill"
+        android:layout_below="@+id/title_bar" >
+
+        <com.handmark.pulltorefresh.library.PullToRefreshWebView
+            android:id="@+id/webcontent_wb"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent" />
+
+        <View
+            android:id="@+id/night_theme_view"
+            style="@style/fill"
+            android:background="#80000000"
+            android:clickable="false"
+            android:focusable="false" />
+    </FrameLayout>
 
 </RelativeLayout>

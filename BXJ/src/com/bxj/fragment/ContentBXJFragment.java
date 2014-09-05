@@ -122,6 +122,12 @@ public class ContentBXJFragment extends BaseFragment implements
 
 	Handler handler = new Handler() {
 		public void handleMessage(android.os.Message msg) {
+			
+			if (ISREFRESHING) {
+				pullToRefreshListView.onRefreshComplete();
+				ISREFRESHING = false;
+			}
+			
 			switch (msg.what) {
 			case PARSE_SUCC:
 				dismissProgressDialog();
@@ -261,10 +267,6 @@ public class ContentBXJFragment extends BaseFragment implements
 		} else {
 			mAdpter.notifyDataSetChanged();
 		}
-		if (ISREFRESHING) {
-			pullToRefreshListView.onRefreshComplete();
-			ISREFRESHING = false;
-		}
 	}
 
 	@Override
@@ -297,5 +299,19 @@ public class ContentBXJFragment extends BaseFragment implements
 		ISREFRESHING = true;
 		getBXJContent(true);
 	};
+	
+	/**
+	 * 返回键按下
+	 * 
+	 * @return
+	 */
+	public boolean onBackPressed() {
+		if (pullToRefreshListView.isRefreshing()) {
+			pullToRefreshListView.onRefreshComplete();
+			LogUtil.s("-----MainPageFragment--isRefreshing---onBackPressed-----");
+			return true;
+		}
+		return false;
+	}
 
 }

@@ -71,6 +71,7 @@ public class DownLoadTask extends AsyncTask<List<WebData>, Integer, Void> {
 						.getText(R.string.notification_title), App
 						.getContext().getText(R.string.notification_content),
 				contentIntent);
+		notification.flags |= Notification.FLAG_AUTO_CANCEL; // 点击清除按钮或点击通知后会自动消失		
 		// 以R.layout.layout_menu_right为ID 因为R文件不会重复
 		mNotificationManager.notify(R.layout.layout_menu_right, notification);
 		if (listener != null) {

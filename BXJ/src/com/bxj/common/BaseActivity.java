@@ -115,7 +115,7 @@ public abstract class BaseActivity extends FragmentActivity {
 	 *            对话框显示的字体
 	 */
 	public void showProgressDialog(String msg) {
-		if (!progressOnShow) {
+		if (!isFinishing() && !progressOnShow) {
 			progressDialog = new CustomerProgressDialog(this);
 			if (!TextUtils.isEmpty(msg)) {
 				progressDialog.setMessage(msg);

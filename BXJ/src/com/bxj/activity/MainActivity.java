@@ -1,14 +1,8 @@
 package com.bxj.activity;
 
-import android.app.NotificationManager;
-import android.content.Context;
 import android.os.Bundle;
-import android.text.Layout;
-import android.view.LayoutInflater;
-import android.view.View;
 import android.widget.Toast;
 
-import com.bxj.App;
 import com.bxj.R;
 import com.bxj.common.BaseActivity;
 import com.bxj.fragment.ContentBXJFragment;
@@ -16,7 +10,6 @@ import com.bxj.fragment.SlidingMenuLeft;
 import com.bxj.fragment.SlidingMenuRight;
 import com.bxj.manager.StorageManager;
 import com.bxj.manager.UpdateMgr;
-import com.bxj.utils.LogUtil;
 import com.bxj.utils.SystemUtils;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu.OnClosedListener;
@@ -42,7 +35,7 @@ public class MainActivity extends BaseActivity implements
 		}
 		setContentView(R.layout.activity_main);
 		setAllowSwipeFinsh(false);
-		
+
 		// 没有内存卡就弹窗退出
 		if (!StorageManager.getInstance().existSDcard()) {
 			SystemUtils.checkSDcardDlg(this);
@@ -78,9 +71,6 @@ public class MainActivity extends BaseActivity implements
 				contentFragment.settingChanged();
 			}
 		});
-		NotificationManager mNotificationManager = (NotificationManager) App
-				.getContext().getSystemService(Context.NOTIFICATION_SERVICE);
-		mNotificationManager.cancel(R.layout.layout_menu_right);
 		slidingmenu.postDelayed(new Runnable() {
 
 			@Override
@@ -88,16 +78,21 @@ public class MainActivity extends BaseActivity implements
 				UpdateMgr.getInstance().checkUpdate();
 			}
 		}, 5 * 1000);
-		
+
 	}
 
 	@Override
 	public void onItemSelected(String id) {
 
 	}
-	
+
 	@Override
 	public void onBackPressed() {
+		if (contentFragment != null && contentFragment.onBackPressed()) {
+			// 如果事件 被消费掉 return
+			return;
+		}
+
 		if ((System.currentTimeMillis() - exitTime) > 2000) {
 			Toast.makeText(getApplicationContext(), R.string.exit_notiy,
 					Toast.LENGTH_SHORT).show();

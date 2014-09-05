@@ -163,7 +163,7 @@ public class FileStorageUtil {
 	 */
 	public static void writeInputStream(File file, InputStream is)
 			throws IOException {
-		if (is == null || is.available() == 0) {
+		if (is == null) {
 			throw new IOException();
 		}
 		OutputStream out = new FileOutputStream(file);

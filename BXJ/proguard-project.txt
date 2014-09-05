@@ -96,9 +96,7 @@
 -libraryjars libs/gson-2.2.1.jar
 -libraryjars libs/weibo.sdk.android.sso.jar
 -libraryjars libs/universal-image-loader-1.8.6-with-sources.jar
--libraryjars libs/pgimagesdk.jar
 -libraryjars libs/locSDK_3.1.jar
--libraryjars libs/libammsdk.jar
 
 -keep class android.support.**{*;}
 -keep class android.** { *; }

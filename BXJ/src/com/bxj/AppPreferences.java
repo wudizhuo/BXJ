@@ -1,12 +1,10 @@
 package com.bxj;
 
-import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
 public class AppPreferences {
 	public static final String SHAREDPREFERENCES_NAME = "vancl_sp";
-	private static final String KEY_LAST_CHECK_UPDATE_TIME = "key_last_checkupdate_time";
 	public static SharedPreferences sPreferences;
 	static {
 		sPreferences = PreferenceManager
@@ -81,14 +79,4 @@ public class AppPreferences {
 				.commit();
 	}
 
-	public static long getLastCheckUpdateTime() {
-		return sPreferences.getLong(KEY_LAST_CHECK_UPDATE_TIME, 0);
-	}
-
-	public static void setLastCheckUpdateTime() {
-		sPreferences
-				.edit()
-				.putLong(KEY_LAST_CHECK_UPDATE_TIME, System.currentTimeMillis())
-				.commit();
-	}
 }

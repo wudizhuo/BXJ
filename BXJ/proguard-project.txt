@@ -19,9 +19,6 @@
    public *;
 }
 
--libraryjars libs/android-support-v13.jar
--libraryjars libs/umeng_sdk.jar
-
 -dontwarn android.support.**
 -dontwarn android.**
 -dontwarn com.google.**
@@ -30,8 +27,6 @@
 
 -keep class android.support.**{*;}
 -keep class android.** { *; }
--keep class com.google.** { *; }
--keep class com.umeng.**{*;}
 -keep class org.apache.**{*;}
 
 
@@ -91,18 +86,9 @@
   public static final android.os.Parcelable$Creator *;
 }
 
--libraryjars libs/umeng_sdk.jar
--libraryjars libs/android-support-v4.jar
--libraryjars libs/gson-2.2.1.jar
--libraryjars libs/weibo.sdk.android.sso.jar
--libraryjars libs/universal-image-loader-1.8.6-with-sources.jar
--libraryjars libs/locSDK_3.1.jar
-
 -keep class android.support.**{*;}
 -keep class android.** { *; }
 
--keep class com.google.** { *; }
--keep class com.umeng.**{*;}
 -keep class com.tencent.**{*;}
 
 -keep class org.apache.**{*;} 
@@ -117,3 +103,96 @@
     java.lang.Object writeReplace();
     java.lang.Object readResolve();
 }
+
+-keepclassmembers class * {
+   public <init>(org.json.JSONObject);
+}
+
+-keep public class com.umeng.fb.ui.ThreadView {
+}
+
+-keep public class * extends com.umeng.**
+
+-dontoptimize
+-dontusemixedcaseclassnames
+-dontskipnonpubliclibraryclasses
+-dontpreverify
+-verbose
+-ignorewarning
+-optimizations !code/simplification/arithmetic,!field/*,!class/merging/*
+
+-keep public class * extends android.view.View {
+    public <init>(android.content.Context);
+    public <init>(android.content.Context, android.util.AttributeSet);
+    public <init>(android.content.Context, android.util.AttributeSet, int);
+    public void set*(...);
+}
+
+# This will avoid all the onClick listeners referenced from XML Layouts from being removed
+
+# remove all logs
+-assumenosideeffects class android.util.Log { *; }
+
+-keepclasseswithmembers class * {
+    public <init>(android.content.Context, android.util.AttributeSet);
+}
+
+-keepclasseswithmembers class * {
+    public <init>(android.content.Context, android.util.AttributeSet, int);
+}
+
+-keepclassmembers class * implements android.os.Parcelable {
+    static android.os.Parcelable$Creator CREATOR;
+}
+
+-keepclassmembers class **.R$* {
+    public static <fields>;
+}
+
+-keepclassmembers class fqcn.of.javascript.interface.for.webview {
+   public *;
+}
+
+-keep class * implements android.os.Parcelable {
+  public static final android.os.Parcelable$Creator *;
+}
+
+-dontwarn android.support.**
+-dontwarn android.**
+-dontwarn com.google.**
+-dontwarn com.umeng.**
+
+-keep class android.support.**{*;}
+-keep class android.** { *; }
+-keep class org.apache.**{*;}
+
+-keep class android.** { *; }
+-keep class com.google.** { *; }
+-keep class com.umeng.**{*;}
+-keep class org.jsoup.**{*;}
+
+
+-keepclassmembers class * implements java.io.Serializable {
+	public protected <fields>;
+	public protected <methods>;
+    static final long serialVersionUID;
+    static final java.io.ObjectStreamField[] serialPersistentFields;
+    private void writeObject(java.io.ObjectOutputStream);
+    private void readObject(java.io.ObjectInputStream);
+    java.lang.Object writeReplace();
+    java.lang.Object readResolve();
+}
+
+-keepclassmembers class * {
+   public <init>(org.json.JSONObject);
+}
+
+-keep public class com.bxj.R$*{
+	public static final int *;
+}
+
+-libraryjars libs/umeng-analytics-v5.2.4.jar
+-libraryjars libs/umeng-feedback-v4.3.jar
+-libraryjars libs/umeng-update-v2.4.2.jar
+-libraryjars libs/android-support-v4.jar
+-libraryjars libs/jsoup-1.7.3.jar

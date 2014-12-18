@@ -71,13 +71,13 @@ public class MainActivity extends BaseActivity implements
 				contentFragment.settingChanged();
 			}
 		});
-		slidingmenu.postDelayed(new Runnable() {
+		slidingmenu.post(new Runnable() {
 
 			@Override
 			public void run() {
 				UpdateMgr.getInstance().checkUpdate();
 			}
-		}, 5 * 1000);
+		});
 
 	}
 

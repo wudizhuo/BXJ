@@ -13,11 +13,16 @@ import com.bxj.fragment.SlidingMenuLeft;
 import com.bxj.fragment.SlidingMenuRight;
 import com.bxj.manager.StorageManager;
 import com.bxj.manager.UpdateMgr;
+import com.bxj.utils.LogUtil;
+import com.bxj.utils.StatServiceUtil;
 import com.bxj.utils.SystemUtils;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu.OnClosedListener;
+import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu.OnOpenListener;
+import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu.OnOpenedListener;
 import com.tencent.android.tpush.XGIOperateCallback;
 import com.tencent.android.tpush.XGPushManager;
+import com.tencent.android.tpush.logging.a.f;
 import com.umeng.fb.FeedbackAgent;
 
 public class MainActivity extends BaseActivity implements
@@ -26,8 +31,9 @@ public class MainActivity extends BaseActivity implements
 	public static String CONTENT_FRAGMENT = "content_fragment";
 	public static String LEFT_FRAGMENT = "slidingmenu_left";
 	public static String RIGHT_FRAGMENT = "slidingmenu_right";
-	long exitTime = 0;
+	private long exitTime = 0;
 	private SlidingMenu slidingmenu;
+	private boolean isSecondaryOpen;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -77,6 +83,27 @@ public class MainActivity extends BaseActivity implements
 				contentFragment.settingChanged();
 			}
 		});
+		slidingmenu.setOnOpenedListener(new OnOpenedListener() {
+
+			@Override
+			public void onOpened() {
+				if (isSecondaryOpen) {
+					isSecondaryOpen = false;
+				} else {
+					StatServiceUtil.trackEvent("打开左菜单");
+				}
+			}
+		});
+
+		slidingmenu.setSecondaryOnOpenListner(new OnOpenListener() {
+
+			@Override
+			public void onOpen() {
+				isSecondaryOpen = true;
+				StatServiceUtil.trackEvent("打开右菜单");
+			}
+		});
+
 		slidingmenu.post(new Runnable() {
 
 			@Override

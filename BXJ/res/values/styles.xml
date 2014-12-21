@@ -7,14 +7,13 @@
         <item name="android:activityCloseExitAnimation">@anim/slide_out_right</item>
     </style>
 
-    <style name="AppTheme" parent="@android:style/Theme.Light.NoTitleBar">
+    <style name="AppTheme" parent="@android:style/Theme.Light.NoTitleBar"></style>
+
+    <!-- 普通模式 -->
+    <style name="DefultTheme" parent="AppTheme">
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowAnimationStyle">@style/AnimationActivity</item>
         <item name="android:windowBackground">@android:color/transparent</item>
-    </style>
-    
-    <!-- 普通模式 -->
-    <style name="DefultTheme" parent="AppTheme">
         <item name="page_bg">@color/page_bg</item>
         <item name="android:textColor">@color/text_color</item>
         <item name="content_bg">@color/content_bg</item>
@@ -129,7 +128,8 @@
     <style name="ActionBarProgressBar" parent="@android:style/Widget.ProgressBar.Small"></style>
     <!-- 上面是友盟需要的配置 -->
 
-	<!-- 自适应宽高 -->
+
+    <!-- 自适应宽高 -->
     <style name="wrap">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
@@ -144,7 +144,7 @@
         <item name="android:layout_width">fill_parent</item>
         <item name="android:layout_height">fill_parent</item>
     </style>
-    
+
     <style name="list">
         <item name="android:dividerHeight">0.5dp</item>
     </style>

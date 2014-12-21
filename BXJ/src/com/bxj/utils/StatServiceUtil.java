@@ -21,10 +21,6 @@ public class StatServiceUtil {
 		MobclickAgent.onEvent(App.getContext(), event_id);
 	}
 
-	public static void trackEvent(Context mContext, String event_id) {
-		MobclickAgent.onEvent(mContext, event_id);
-	}
-
 	/**
 	 * 统计时间
 	 */

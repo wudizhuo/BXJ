@@ -20,6 +20,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 import com.bxj.AppConstants;
+import com.bxj.AppPreferences;
 import com.bxj.R;
 import com.bxj.common.BaseActivity;
 import com.bxj.domain.WebData;
@@ -38,7 +39,7 @@ import com.handmark.pulltorefresh.library.PullToRefreshWebView;
  * @author SunZhuo
  * 
  */
-public class WebContentActivity extends BaseActivity implements OnTouchListener{
+public class WebContentActivity extends BaseActivity implements OnTouchListener {
 	private String webContent;// 显示的网页的本地内容
 	private PullToRefreshWebView mPullRefreshWebView;
 	private WebView webView;// 用于显示的webview
@@ -54,24 +55,35 @@ public class WebContentActivity extends BaseActivity implements OnTouchListener{
 		mPullRefreshWebView.setOnRefreshListener(onRefreshListener);
 		webView = mPullRefreshWebView.getRefreshableView();
 		webView.setOnTouchListener(this);
-		
-		WebSettings settings = webView.getSettings(); 
+
+		WebSettings settings = webView.getSettings();
 		settings.setJavaScriptEnabled(true);// 支持js脚本
 		settings.setSupportZoom(true);// 支持缩放
 		settings.setUseWideViewPort(true);// 支持不同的分辨率
 		settings.setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
 		settings.setLoadWithOverviewMode(true);
-		
+
 		webView.setWebViewClient(new LoadingWebViewClient());
 		getContent(webData);
-		LogUtil.s("---url---"+webData.getUrl());
-		
+		LogUtil.s("---url---" + webData.getUrl());
+
 		View night_theme_view = findViewById(R.id.night_theme_view);
-		if(AppConstants.SETTING_MODE_NIGHT){
+		if (AppConstants.SETTING_MODE_NIGHT) {
 			night_theme_view.setVisibility(View.VISIBLE);
-		}else {
+		} else {
 			night_theme_view.setVisibility(View.GONE);
 		}
+		webView.postDelayed(new Runnable() {
+
+			@Override
+			public void run() {
+				if (!AppPreferences.getIsShowGestureCloseNotice()) {
+					ToastUtil.show("手势右划返回");
+					ToastUtil.show("手势右划返回");
+					AppPreferences.setIsShowGestureCloseNotice(true);
+				}
+			}
+		}, 1000);
 	}
 
 	OnRefreshListener<WebView> onRefreshListener = new OnRefreshListener<WebView>() {
@@ -200,7 +212,7 @@ public class WebContentActivity extends BaseActivity implements OnTouchListener{
 	}
 
 	/**
-	 * 不能删除  保证右滑返回
+	 * 不要删除这个方法 保证右滑返回 因为内嵌webview　 要把WebView的Touch时间　给activity处理 才能处理右划返回。
 	 */
 	@Override
 	public boolean onTouch(View v, MotionEvent event) {

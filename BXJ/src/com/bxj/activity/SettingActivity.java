@@ -39,7 +39,7 @@ public class SettingActivity extends BaseActivity {
 	 * 清理缓存的点击事件
 	 */
 	private void settingClear() {
-		StatServiceUtil.trackEvent(this, "设置页面_手动清理缓存");
+		StatServiceUtil.trackEvent("设置页面_手动清理缓存");
 		File offlineDataDir = StorageManager.getInstance().getOfflineDataDir();
 		if (offlineDataDir.exists()) {
 			FileStorageUtil.deleteFiles(offlineDataDir);
@@ -51,6 +51,7 @@ public class SettingActivity extends BaseActivity {
 	 * 关于的点击事件
 	 */
 	private void settingAbout() {
+		StatServiceUtil.trackEvent("设置_关于");
 		startActivity(new Intent(this, AboutActivity.class));
 	}
 }

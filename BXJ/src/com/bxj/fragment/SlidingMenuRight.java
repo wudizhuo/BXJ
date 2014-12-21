@@ -44,6 +44,7 @@ public class SlidingMenuRight extends BaseFragment implements OnClickListener,
 	private ContentBXJFragment content_fragment;
 	private boolean downloading = false;
 	private ImageView unread;
+	private boolean isClickCheckUpdate;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -95,7 +96,9 @@ public class SlidingMenuRight extends BaseFragment implements OnClickListener,
 	}
 
 	private void checkUpdate() {
+		isClickCheckUpdate = true;
 		showProgressDialog("正在检查更新...");
+		StatServiceUtil.trackEvent("检查更新");
 		UpdateMgr.getInstance().checkUpdate();
 	}
 
@@ -103,6 +106,7 @@ public class SlidingMenuRight extends BaseFragment implements OnClickListener,
 	 * 意见反馈的点击事件
 	 */
 	private void settingFeedback() {
+		StatServiceUtil.trackEvent("意见反馈");
 		FeedbackAgent agent = new FeedbackAgent(getActivity());
 		agent.startFeedbackActivity();
 	}
@@ -121,6 +125,12 @@ public class SlidingMenuRight extends BaseFragment implements OnClickListener,
 		Intent intent = getActivity().getIntent();
 		intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
 		getActivity().startActivity(intent);
+		if (AppConstants.SETTING_MODE_NIGHT) {
+			LogUtil.s("夜间模式-开");
+			StatServiceUtil.trackEvent("夜间模式-开");
+		} else {
+			StatServiceUtil.trackEvent("夜间模式-关");
+		}
 	}
 
 	private void initBtn() {
@@ -130,6 +140,9 @@ public class SlidingMenuRight extends BaseFragment implements OnClickListener,
 			iv_setting_night.setBackgroundResource(R.drawable.setting_close);
 		}
 
+		/**
+		 * 检查更新 回调
+		 */
 		UpdateMgr.getInstance().setUpdateListener(new UpdateListener() {
 
 			@Override
@@ -139,6 +152,14 @@ public class SlidingMenuRight extends BaseFragment implements OnClickListener,
 				} else {
 					unread.setVisibility(View.GONE);
 				}
+				if (isClickCheckUpdate) {
+					if (hasNewVersion) {
+						ToastUtil.showInCenter("请更新版本！");
+					} else {
+						ToastUtil.showInCenter("当前已是最新版本");
+					}
+				}
+
 				dismissProgressDialog();
 			}
 		});
@@ -155,7 +176,7 @@ public class SlidingMenuRight extends BaseFragment implements OnClickListener,
 	 * 用于处理下载事件
 	 */
 	private synchronized void downloadEvent() {
-		StatServiceUtil.trackEvent(mContext, "点击离线下载按钮");
+		StatServiceUtil.trackEvent("点击离线下载按钮");
 		if (downloading) {
 			pauseDownload();
 			tv_download.setText("离线下载");

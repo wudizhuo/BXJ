@@ -38,6 +38,7 @@ public class AppPreferences {
 	private static final String SETTING_BXJLIGHT = "setting_bxjlight";
 	private static final String SETTING_MODE_NIGHT = "setting_mode_night";
 	private static final String IS_REGISTERPUSH = "is_registerpush";
+	private static final String IS_SHOW_GESTURE_CLOSE_NOTICE = "is_show_gesture_close_notice";
 	private static final String HAS_SLIDINGGUIDE = "has_slidingguide";
 
 	/**
@@ -91,6 +92,15 @@ public class AppPreferences {
 
 	public static boolean setRegisterPush(boolean value) {
 		return sPreferences.edit().putBoolean(IS_REGISTERPUSH, value).commit();
+	}
+
+	public static boolean getIsShowGestureCloseNotice() {
+		return sPreferences.getBoolean(IS_SHOW_GESTURE_CLOSE_NOTICE, false);
+	}
+
+	public static boolean setIsShowGestureCloseNotice(boolean value) {
+		return sPreferences.edit()
+				.putBoolean(IS_SHOW_GESTURE_CLOSE_NOTICE, value).commit();
 	}
 
 }

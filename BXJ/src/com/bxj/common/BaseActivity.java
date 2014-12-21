@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.bxj.AppPreferences;
 import com.bxj.R;
 import com.bxj.utils.LogUtil;
+import com.bxj.utils.StatServiceUtil;
 import com.bxj.view.CustomerProgressDialog;
 import com.umeng.analytics.MobclickAgent;
 
@@ -59,6 +60,7 @@ public abstract class BaseActivity extends FragmentActivity {
 			if (e2.getX() - e1.getX() > swipeMinDistance
 					&& (Math.abs(e2.getX() - e1.getX())/4 > Math.abs(e1.getY()
 							- e2.getY())) && Math.abs(velocityX) > 0) {
+				StatServiceUtil.trackEvent("右滑返回");
 				BaseActivity.this.onBackPressed();
 			}
 			return false;

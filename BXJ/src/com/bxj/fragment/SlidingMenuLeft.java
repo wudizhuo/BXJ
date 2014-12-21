@@ -14,6 +14,7 @@ import com.bxj.AppPreferences;
 import com.bxj.R;
 import com.bxj.common.BaseFragment;
 import com.bxj.utils.LogUtil;
+import com.bxj.utils.StatServiceUtil;
 import com.bxj.utils.ToastUtil;
 
 public class SlidingMenuLeft extends BaseFragment implements OnClickListener {
@@ -57,7 +58,7 @@ public class SlidingMenuLeft extends BaseFragment implements OnClickListener {
 	public void onStart() {
 		super.onStart();
 	}
-
+	
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
@@ -71,6 +72,9 @@ public class SlidingMenuLeft extends BaseFragment implements OnClickListener {
 			AppConstants.SETTING_CHANGED = true;
 			if(!AppConstants.SETTING_BXJ_LIGHT){
 				ToastUtil.showInCenter("刷新页面后生效");
+				StatServiceUtil.trackEvent("只看亮贴-关");
+			}else {
+				StatServiceUtil.trackEvent("只看亮贴-开");
 			}
 			break;
 		default:

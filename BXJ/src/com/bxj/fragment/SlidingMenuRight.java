@@ -2,7 +2,6 @@ package com.bxj.fragment;
 
 import java.util.List;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -13,7 +12,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout.LayoutParams;
 import android.widget.TextView;
 
-import com.bxj.App;
 import com.bxj.AppConstants;
 import com.bxj.AppPreferences;
 import com.bxj.R;
@@ -24,9 +22,13 @@ import com.bxj.common.BaseFragment;
 import com.bxj.domain.BXJListData;
 import com.bxj.manager.DownLoadMgr;
 import com.bxj.manager.DownLoadMgr.OndDownloadListener;
+import com.bxj.manager.UpdateMgr;
+import com.bxj.manager.UpdateMgr.UpdateListener;
 import com.bxj.utils.LogUtil;
 import com.bxj.utils.StatServiceUtil;
 import com.bxj.utils.ToastUtil;
+import com.umeng.fb.FeedbackAgent;
+import com.umeng.update.UmengUpdateAgent;
 
 /**
  * 1 在设置页面添加清除缓存功能 2 添加设置页面
@@ -41,6 +43,7 @@ public class SlidingMenuRight extends BaseFragment implements OnClickListener,
 	private ImageView iv_setting_night;
 	private ContentBXJFragment content_fragment;
 	private boolean downloading = false;
+	private ImageView unread;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -51,8 +54,11 @@ public class SlidingMenuRight extends BaseFragment implements OnClickListener,
 		tv_download = (TextView) view.findViewById(R.id.tv_download);
 		tv_setting = (TextView) view.findViewById(R.id.tv_setting);
 		iv_setting_night = (ImageView) view.findViewById(R.id.iv_setting_night);
+		unread = (ImageView) view.findViewById(R.id.unread);
 		tv_download.setOnClickListener(this);
 		tv_setting.setOnClickListener(this);
+		view.findViewById(R.id.feedback).setOnClickListener(this);
+		view.findViewById(R.id.check_update).setOnClickListener(this);
 		view.findViewById(R.id.setting_night).setOnClickListener(this);
 		initBtn();
 		return view;
@@ -77,10 +83,28 @@ public class SlidingMenuRight extends BaseFragment implements OnClickListener,
 		case R.id.setting_night:
 			clickNightMode();
 			break;
-
+		case R.id.check_update:
+			checkUpdate();
+			break;
+		case R.id.feedback:
+			settingFeedback();
+			break;
 		default:
 			break;
 		}
+	}
+
+	private void checkUpdate() {
+		showProgressDialog("正在检查更新...");
+		UpdateMgr.getInstance().checkUpdate();
+	}
+
+	/**
+	 * 意见反馈的点击事件
+	 */
+	private void settingFeedback() {
+		FeedbackAgent agent = new FeedbackAgent(getActivity());
+		agent.startFeedbackActivity();
 	}
 
 	/**
@@ -90,8 +114,8 @@ public class SlidingMenuRight extends BaseFragment implements OnClickListener,
 		AppConstants.SETTING_MODE_NIGHT = !AppConstants.SETTING_MODE_NIGHT;
 		initBtn();
 		AppPreferences.setSettingModeNight(AppConstants.SETTING_MODE_NIGHT);
-		((BaseActivity)getActivity()).setTheme();
-		AppConstants.isNeedRestore=true;
+		((BaseActivity) getActivity()).setTheme();
+		AppConstants.isNeedRestore = true;
 		getActivity().finish();
 		getActivity().overridePendingTransition(0, 0);
 		Intent intent = getActivity().getIntent();
@@ -105,6 +129,19 @@ public class SlidingMenuRight extends BaseFragment implements OnClickListener,
 		} else {
 			iv_setting_night.setBackgroundResource(R.drawable.setting_close);
 		}
+
+		UpdateMgr.getInstance().setUpdateListener(new UpdateListener() {
+
+			@Override
+			public void onUpdateReturned(boolean hasNewVersion) {
+				if (hasNewVersion) {
+					unread.setVisibility(View.VISIBLE);
+				} else {
+					unread.setVisibility(View.GONE);
+				}
+				dismissProgressDialog();
+			}
+		});
 	}
 
 	/**

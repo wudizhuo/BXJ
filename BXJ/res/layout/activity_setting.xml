@@ -68,20 +68,6 @@
     <include layout="@layout/divider_line_h" />
 
     <RelativeLayout
-        android:id="@+id/setting_feedback"
-        style="@style/setting_item" >
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:singleLine="true"
-            android:text="意见反馈" />
-    </RelativeLayout>
-
-    <include layout="@layout/divider_line_h" />
-
-    <RelativeLayout
         android:id="@+id/setting_about"
         style="@style/setting_item" >
 

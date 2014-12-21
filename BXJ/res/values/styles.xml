@@ -72,6 +72,7 @@
         <item name="android:textColor">@android:color/white</item>
         <item name="android:background">@drawable/text_menu_selector</item>
         <item name="android:textSize">18sp</item>
+        <item name="android:gravity">center</item>
     </style>
 
     <style name="titleBar">

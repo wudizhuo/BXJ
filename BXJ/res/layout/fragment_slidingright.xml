@@ -34,7 +34,6 @@
     <TextView
         android:id="@+id/tv_download"
         style="@style/menu_text"
-        android:gravity="center"
         android:text="离线下载" />
 
     <include layout="@layout/divider_line_h" />
@@ -42,7 +41,34 @@
     <TextView
         android:id="@+id/tv_setting"
         style="@style/menu_text"
-        android:gravity="center"
         android:text="设置" />
+
+    <include layout="@layout/divider_line_h" />
+
+    <LinearLayout
+        android:id="@+id/check_update"
+        style="@style/menu_text"
+        android:gravity="center" >
+
+        <TextView
+            style="@style/menu_text"
+            android:layout_width="wrap_content"
+            android:text="检查更新" />
+
+        <ImageView
+            android:id="@+id/unread"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginLeft="5dp"
+            android:background="@drawable/tab_unread_bg"
+            android:visibility="gone" />
+    </LinearLayout>
+
+    <include layout="@layout/divider_line_h" />
+
+    <TextView
+        android:id="@+id/feedback"
+        style="@style/menu_text"
+        android:text="意见反馈" />
 
 </LinearLayout>

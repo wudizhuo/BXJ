@@ -26,9 +26,6 @@ public class SettingActivity extends BaseActivity {
 		case R.id.setting_clear:
 			settingClear();
 			break;
-		case R.id.setting_feedback:
-			settingFeedback();
-			break;
 		case R.id.setting_about:
 			settingAbout();
 			break;
@@ -36,13 +33,6 @@ public class SettingActivity extends BaseActivity {
 		default:
 			break;
 		}
-	}
-
-	/**
-	 * 意见反馈的点击事件
-	 */
-	private void settingFeedback() {
-		startActivity(new Intent(this, FeedBcakActivity.class));
 	}
 
 	/**

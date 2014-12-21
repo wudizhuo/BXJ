@@ -1,8 +1,11 @@
 package com.bxj.activity;
 
+import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Toast;
 
+import com.bxj.AppPreferences;
 import com.bxj.R;
 import com.bxj.common.BaseActivity;
 import com.bxj.fragment.ContentBXJFragment;
@@ -13,6 +16,9 @@ import com.bxj.manager.UpdateMgr;
 import com.bxj.utils.SystemUtils;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu.OnClosedListener;
+import com.tencent.android.tpush.XGIOperateCallback;
+import com.tencent.android.tpush.XGPushManager;
+import com.umeng.fb.FeedbackAgent;
 
 public class MainActivity extends BaseActivity implements
 		SlidingMenuLeft.Callbacks {
@@ -75,10 +81,33 @@ public class MainActivity extends BaseActivity implements
 
 			@Override
 			public void run() {
-				UpdateMgr.getInstance().checkUpdate();
+				appInit();
 			}
 		});
 
+	}
+
+	private void appInit() {
+
+		UpdateMgr.getInstance().checkUpdate();
+		if (!AppPreferences.getRegisterPush()) {
+			Context context = getApplicationContext();
+			XGPushManager.registerPush(context, new XGIOperateCallback() {
+				@Override
+				public void onSuccess(Object data, int flag) {
+					Log.d("TPush", "注册成功，设备token为：" + data);
+					AppPreferences.setRegisterPush(true);
+				}
+
+				@Override
+				public void onFail(Object data, int errCode, String msg) {
+					Log.d("TPush", "注册失败，错误码：" + errCode + ",错误信息：" + msg);
+				}
+			});
+		}
+
+		FeedbackAgent agent = new FeedbackAgent(this);
+		agent.sync();
 	}
 
 	@Override

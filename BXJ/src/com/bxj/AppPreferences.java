@@ -7,8 +7,8 @@ public class AppPreferences {
 	public static final String SHAREDPREFERENCES_NAME = "vancl_sp";
 	public static SharedPreferences sPreferences;
 	static {
-		sPreferences = PreferenceManager
-				.getDefaultSharedPreferences(App.getContext());
+		sPreferences = PreferenceManager.getDefaultSharedPreferences(App
+				.getContext());
 	}
 
 	// 保存离线下载文件的日期 用于判断之前的离线缓存是否删除
@@ -37,6 +37,7 @@ public class AppPreferences {
 
 	private static final String SETTING_BXJLIGHT = "setting_bxjlight";
 	private static final String SETTING_MODE_NIGHT = "setting_mode_night";
+	private static final String IS_REGISTERPUSH = "is_registerpush";
 	private static final String HAS_SLIDINGGUIDE = "has_slidingguide";
 
 	/**
@@ -77,6 +78,19 @@ public class AppPreferences {
 	public static boolean setSettingModeNight(boolean value) {
 		return sPreferences.edit().putBoolean(SETTING_MODE_NIGHT, value)
 				.commit();
+	}
+
+	/**
+	 * 是否注册信鸽推送
+	 * 
+	 * @return
+	 */
+	public static boolean getRegisterPush() {
+		return sPreferences.getBoolean(IS_REGISTERPUSH, false);
+	}
+
+	public static boolean setRegisterPush(boolean value) {
+		return sPreferences.edit().putBoolean(IS_REGISTERPUSH, value).commit();
 	}
 
 }

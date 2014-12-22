@@ -82,9 +82,10 @@ public class DownLoadMgr {
 	 * 取消下载
 	 */
 	public void cancelDownLoad() {
-		boolean cancel = downloadTask.cancel(true);
-		LogUtil.s("cancel---" + cancel);
-		downloadTask = null;
+		if (downloadTask != null) {
+			downloadTask.cancel(true);
+			downloadTask = null;
+		}
 	}
 
 	/**

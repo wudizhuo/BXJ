@@ -13,7 +13,6 @@
     <style name="DefultTheme" parent="AppTheme">
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowAnimationStyle">@style/AnimationActivity</item>
-        <item name="android:windowBackground">@android:color/transparent</item>
         <item name="page_bg">@color/page_bg</item>
         <item name="android:textColor">@color/text_color</item>
         <item name="content_bg">@color/content_bg</item>

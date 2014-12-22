@@ -13,7 +13,6 @@ import com.bxj.fragment.SlidingMenuLeft;
 import com.bxj.fragment.SlidingMenuRight;
 import com.bxj.manager.StorageManager;
 import com.bxj.manager.UpdateMgr;
-import com.bxj.utils.LogUtil;
 import com.bxj.utils.StatServiceUtil;
 import com.bxj.utils.SystemUtils;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
@@ -22,7 +21,6 @@ import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu.OnOpenListener;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu.OnOpenedListener;
 import com.tencent.android.tpush.XGIOperateCallback;
 import com.tencent.android.tpush.XGPushManager;
-import com.tencent.android.tpush.logging.a.f;
 import com.umeng.fb.FeedbackAgent;
 
 public class MainActivity extends BaseActivity implements

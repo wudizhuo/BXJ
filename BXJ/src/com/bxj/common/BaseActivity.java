@@ -57,11 +57,14 @@ public abstract class BaseActivity extends FragmentActivity {
 		@Override
 		public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX,
 				float velocityY) {
-			if (e2.getX() - e1.getX() > swipeMinDistance
-					&& (Math.abs(e2.getX() - e1.getX())/4 > Math.abs(e1.getY()
-							- e2.getY())) && Math.abs(velocityX) > 0) {
-				StatServiceUtil.trackEvent("右滑返回");
-				BaseActivity.this.onBackPressed();
+			if (e1 != null && e2 != null) {
+				if (e2.getX() - e1.getX() > swipeMinDistance
+						&& (Math.abs(e2.getX() - e1.getX()) / 4 > Math.abs(e1
+								.getY() - e2.getY()))
+						&& Math.abs(velocityX) > 0) {
+					StatServiceUtil.trackEvent("右滑返回");
+					BaseActivity.this.onBackPressed();
+				}
 			}
 			return false;
 		}

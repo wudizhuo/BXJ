@@ -32,7 +32,7 @@ public class App extends Application {
 		// 使用在线配置功能
 		MobclickAgent.updateOnlineConfig(getContext());
 		// 检查友盟的res是否都复制进去了
-		UmengUpdateAgent.setUpdateCheckConfig(false);
+		UmengUpdateAgent.setUpdateCheckConfig(BuildConfig.DEBUG);
 		UmengUpdateAgent.setUpdateOnlyWifi(false);
 		getOnlineValue();
 	}

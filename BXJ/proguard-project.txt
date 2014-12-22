@@ -203,4 +203,4 @@
 -libraryjars libs/jsoup-1.7.3.jar
 -libraryjars libs/mid-sdk-2.10.jar
 -libraryjars libs/wup-1.0.0-SNAPSHOT.jar
--libraryjars libs/Xg_sdk_v2.36.jar
+-libraryjars libs/Xg_sdk_v2.31.jar

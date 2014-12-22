@@ -98,10 +98,10 @@ public class ContentBXJFragment extends BaseFragment implements
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
-		if(AppConstants.isNeedRestore){
+		if (AppConstants.isNeedRestore) {
 			LogUtil.s("--onReInitContent---");
 			onReInitContent();
-		}else {
+		} else {
 			LogUtil.s("--initContent---");
 			initContent();
 		}
@@ -122,12 +122,12 @@ public class ContentBXJFragment extends BaseFragment implements
 
 	Handler handler = new Handler() {
 		public void handleMessage(android.os.Message msg) {
-			
+
 			if (ISREFRESHING) {
 				pullToRefreshListView.onRefreshComplete();
 				ISREFRESHING = false;
 			}
-			
+
 			switch (msg.what) {
 			case PARSE_SUCC:
 				dismissProgressDialog();
@@ -157,7 +157,7 @@ public class ContentBXJFragment extends BaseFragment implements
 			initContentFromLocal();
 		}
 	}
-	
+
 	/**
 	 * 设置修改等 需要重新从本地加载新设置的内容
 	 */
@@ -188,6 +188,7 @@ public class ContentBXJFragment extends BaseFragment implements
 	}
 
 	private void getBXJContent(final Boolean isGetFromNet) {
+		showProgressDialog();
 		new Thread() {
 			public void run() {
 				try {
@@ -217,7 +218,6 @@ public class ContentBXJFragment extends BaseFragment implements
 	 * @throws IOException
 	 */
 	private List<BXJListData> getLocalData() throws IOException {
-		showProgressDialog();
 		File saveHtmlFile = new File(StorageManager.getInstance().getTypeDir(
 				AppConstants.TYPE_BXJ), AppConstants.TYPE_BXJ + "_data_"
 				+ INDEX);
@@ -238,7 +238,7 @@ public class ContentBXJFragment extends BaseFragment implements
 				+ INDEX);
 		// URL_MAIN = "http://bbs.hupu.com/bxj-" + INDEX;
 		String url = URL_MAIN + "-" + INDEX;
-		DownLoadMgr.getInstance().getHtmlAndSave(url, saveHtmlFile,false);
+		DownLoadMgr.getInstance().getHtmlAndSave(url, saveHtmlFile, false);
 		return (List<BXJListData>) BXJDataParseMgr.getInstance().parse(
 				saveHtmlFile);
 	}
@@ -299,7 +299,7 @@ public class ContentBXJFragment extends BaseFragment implements
 		ISREFRESHING = true;
 		getBXJContent(true);
 	};
-	
+
 	/**
 	 * 返回键按下
 	 * 

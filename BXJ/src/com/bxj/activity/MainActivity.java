@@ -13,6 +13,7 @@ import com.bxj.fragment.SlidingMenuLeft;
 import com.bxj.fragment.SlidingMenuRight;
 import com.bxj.manager.StorageManager;
 import com.bxj.manager.UpdateMgr;
+import com.bxj.utils.ChannelUtil;
 import com.bxj.utils.StatServiceUtil;
 import com.bxj.utils.SystemUtils;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
@@ -21,6 +22,7 @@ import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu.OnOpenListener;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu.OnOpenedListener;
 import com.tencent.android.tpush.XGIOperateCallback;
 import com.tencent.android.tpush.XGPushManager;
+import com.umeng.analytics.AnalyticsConfig;
 import com.umeng.fb.FeedbackAgent;
 
 public class MainActivity extends BaseActivity implements
@@ -113,7 +115,6 @@ public class MainActivity extends BaseActivity implements
 	}
 
 	private void appInit() {
-
 		UpdateMgr.getInstance().checkUpdate();
 		if (!AppPreferences.getRegisterPush()) {
 			Context context = getApplicationContext();

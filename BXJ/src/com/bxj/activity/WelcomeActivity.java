@@ -8,7 +8,9 @@ import android.os.SystemClock;
 import com.bxj.AppConstants;
 import com.bxj.R;
 import com.bxj.common.BaseActivity;
+import com.bxj.utils.ChannelUtil;
 import com.bxj.utils.LogUtil;
+import com.umeng.analytics.AnalyticsConfig;
 
 /**
  * 欢迎页 显示图片
@@ -46,6 +48,7 @@ public class WelcomeActivity extends BaseActivity {
 	 * 程序的初始化
 	 */
 	private void appInit() {
+		AnalyticsConfig.setChannel(ChannelUtil.getUmengChannal(this));
 		AppConstants.initConstants();
 	}
 

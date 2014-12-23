@@ -67,9 +67,6 @@
             android:name="UMENG_APPKEY"
             android:value="52d2aecc56240b219500c777" >
         </meta-data>
-        <meta-data
-            android:name="UMENG_CHANNEL"
-            android:value="百度应用" />
 
         <!-- 自动更新服务 -->
         <service

@@ -1,0 +1,62 @@
+ECLIPSE ANDROID PROJECT IMPORT SUMMARY
+======================================
+
+Ignored Files:
+--------------
+The following files were *not* copied into the new Gradle project; you
+should evaluate whether these are still needed in your project and if
+so manually move them:
+
+* .gitignore
+* ic_launcher-web.png
+* proguard/
+* proguard/mapping.txt
+* sunzhuo.keystore
+
+Replaced Jars with Dependencies:
+--------------------------------
+The importer recognized the following .jar files as third party
+libraries and replaced them with Gradle dependencies instead. This has
+the advantage that more explicit version information is known, and the
+libraries can be updated automatically. However, it is possible that
+the .jar file in your project was of an older version than the
+dependency we picked, which could render the project not compileable.
+You can disable the jar replacement in the import wizard and try again:
+
+android-support-v4.jar => com.android.support:support-v4:19.1.0
+
+Moved Files:
+------------
+Android Gradle projects use a different directory structure than ADT
+Eclipse projects. Here's how the projects were restructured:
+
+* AndroidManifest.xml => app/src/main/AndroidManifest.xml
+* libs/Xg_sdk_v2.31.jar => app/libs/Xg_sdk_v2.31.jar
+* libs/armeabi/libbspatch.so => app/src/main/jniLibs/armeabi/libbspatch.so
+* libs/armeabi/libtpnsSecurity.so => app/src/main/jniLibs/armeabi/libtpnsSecurity.so
+* libs/armeabi/libtpnsWatchdog.so => app/src/main/jniLibs/armeabi/libtpnsWatchdog.so
+* libs/com.umeng.fb.v5.0.0.jar => app/libs/com.umeng.fb.v5.0.0.jar
+* libs/jsoup-1.7.3.jar => app/libs/jsoup-1.7.3.jar
+* libs/mid-sdk-2.10.jar => app/libs/mid-sdk-2.10.jar
+* libs/umeng-analytics-v5.2.4.jar => app/libs/umeng-analytics-v5.2.4.jar
+* libs/umeng-update-v2.4.2.jar => app/libs/umeng-update-v2.4.2.jar
+* libs/wup-1.0.0-SNAPSHOT.jar => app/libs/wup-1.0.0-SNAPSHOT.jar
+* lint.xml => app/lint.xml
+* proguard-project.txt => app/proguard-project.txt
+* res/ => app/src/main/res/
+* src/ => app/src/main/java/
+
+Next Steps:
+-----------
+You can now build the project. The Gradle project needs network
+connectivity to download dependencies.
+
+Bugs:
+-----
+If for some reason your project does not build, and you determine that
+it is due to a bug or limitation of the Eclipse to Gradle importer,
+please file a bug at http://b.android.com with category
+Component-Tools.
+
+(This import summary is for your information only, and can be deleted
+after import once you are satisfied with the results.)

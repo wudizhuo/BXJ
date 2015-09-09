@@ -1,0 +1,82 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/page_bg"
+    android:orientation="vertical" >
+
+    <include layout="@layout/title_bar" />
+
+    <RelativeLayout
+        style="@style/setting_item"
+        android:visibility="gone" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:singleLine="true"
+            android:text="浏览电脑版网页" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/setting_close" />
+    </RelativeLayout>
+
+    <include
+        layout="@layout/divider_line_h"
+        android:visibility="gone" />
+
+    <RelativeLayout
+        style="@style/setting_item"
+        android:visibility="gone" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:singleLine="true"
+            android:text="2G下不显示图片" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/setting_close" />
+    </RelativeLayout>
+
+    <include
+        layout="@layout/divider_line_h"
+        android:visibility="gone" />
+
+    <RelativeLayout
+        android:id="@+id/setting_clear"
+        style="@style/setting_item" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:singleLine="true"
+            android:text="清理缓存" />
+    </RelativeLayout>
+
+    <include layout="@layout/divider_line_h" />
+
+    <RelativeLayout
+        android:id="@+id/setting_about"
+        style="@style/setting_item" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:singleLine="true"
+            android:text="关于" />
+    </RelativeLayout>
+
+</LinearLayout>

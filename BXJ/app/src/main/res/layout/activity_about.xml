@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="?attr/page_bg"
+    android:orientation="vertical" >
+
+    <include
+        android:id="@+id/title_bar"
+        layout="@layout/title_bar" />
+
+    <ImageView
+        android:id="@+id/iv_icon"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_below="@+id/title_bar"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:src="@drawable/app_icon" />
+
+    <TextView
+        android:id="@+id/tv_about_ver"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/iv_icon"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="8dp"
+        android:lineSpacingExtra="2sp"
+        android:text="版本号" />
+
+    <TextView
+        android:id="@+id/tv_author"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="10dp"
+        android:gravity="bottom"
+        android:lineSpacingExtra="2sp"
+        android:paddingBottom="20dp"
+        android:text=" 作者： 无敌卓 \n 邮箱：sunzhuo1228@126.com \n \n 如有APP开发合作 欢迎邮件联系" />
+
+</RelativeLayout>

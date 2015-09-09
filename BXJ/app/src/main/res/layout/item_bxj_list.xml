@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <!-- 高是140像素 距离左50 距离右20 上24 下36 -->
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="70dp"
+        android:orientation="vertical"
+        android:paddingBottom="10dp"
+        android:paddingLeft="22dp"
+        android:paddingRight="8dp"
+        android:paddingTop="10dp" >
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="top|left"
+            android:textSize="16sp"
+            android:text="tv_title" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true" >
+
+            <ImageView
+                android:layout_width="6dp"
+                android:layout_height="8dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="3dp"
+                android:src="@drawable/bxj_light" />
+
+            <TextView
+                android:id="@+id/tv_lightCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:text="tv_lightCount" />
+
+            <ImageView
+                android:layout_width="6dp"
+                android:layout_height="8dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="3dp"
+                android:src="@drawable/bxj_reply" />
+
+            <TextView
+                android:id="@+id/tv_replyCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="tv_replyCount" />
+        </LinearLayout>
+    </RelativeLayout>
+
+</RelativeLayout>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<color name="content_bg_night">#181923</color>
+    <color name="title_bar_bg_night">#1d1e2a</color>
+    <color name="page_bg_night">#181923</color>
+    <color name="text_color_night">#455e6e</color>
+</resources>

@@ -1,24 +1,38 @@
 package com.bxj;
 
-import java.io.File;
-
 import android.app.Application;
 import android.content.Context;
 import android.content.pm.PackageManager.NameNotFoundException;
+import android.support.v4.content.ContextCompat;
 
 import com.bxj.utils.LogUtil;
+import com.qihoo.updatesdk.lib.UpdateHelper;
 import com.umeng.analytics.MobclickAgent;
 import com.umeng.update.UmengUpdateAgent;
 
+import java.io.File;
+
 public class App extends Application {
 	private static Context applicationContext;
+	private static App app;
 
 	@Override
 	public void onCreate() {
 		super.onCreate();
 		applicationContext = this.getApplicationContext();
+		app = this;
 		LogUtil.s("BXJApplication 创建啦");
 		checkConfig();
+	}
+
+	public static App getApp() {
+		return app;
+	}
+
+	public void appinit() {
+		UpdateHelper.getInstance().init(getApplicationContext(), ContextCompat.getColor(getContext(), R.color.primary));
+		UpdateHelper.getInstance().setDebugMode(BuildConfig.DEBUG);
+		UpdateHelper.getInstance().autoUpdate(getContext().getPackageName());
 	}
 
 	/**
@@ -86,5 +100,4 @@ public class App extends Application {
 		}
 		return null;
 	}
-
 }

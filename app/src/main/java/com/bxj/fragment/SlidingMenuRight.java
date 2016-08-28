@@ -1,7 +1,5 @@
 package com.bxj.fragment;
 
-import java.util.List;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout.LayoutParams;
 import android.widget.TextView;
 
+import com.bxj.App;
 import com.bxj.AppConstants;
 import com.bxj.AppPreferences;
 import com.bxj.R;
@@ -27,8 +26,10 @@ import com.bxj.manager.UpdateMgr.UpdateListener;
 import com.bxj.utils.LogUtil;
 import com.bxj.utils.StatServiceUtil;
 import com.bxj.utils.ToastUtil;
+import com.qihoo.updatesdk.lib.UpdateHelper;
 import com.umeng.fb.FeedbackAgent;
-import com.umeng.update.UmengUpdateAgent;
+
+import java.util.List;
 
 /**
  * 1 在设置页面添加清除缓存功能 2 添加设置页面
@@ -100,6 +101,7 @@ public class SlidingMenuRight extends BaseFragment implements OnClickListener,
 		showProgressDialog("正在检查更新...");
 		StatServiceUtil.trackEvent("检查更新");
 		UpdateMgr.getInstance().checkUpdate();
+		UpdateHelper.getInstance().manualUpdate(App.getContext().getPackageName());
 	}
 
 	/**

@@ -1,16 +1,12 @@
 package com.bxj.utils;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.List;
-
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.support.v4.app.NotificationCompat;
 
 import com.bxj.App;
 import com.bxj.R;
@@ -19,14 +15,9 @@ import com.bxj.domain.WebData;
 import com.bxj.fragment.SlidingMenuRight;
 import com.bxj.manager.DownLoadMgr;
 import com.bxj.manager.DownLoadMgr.OndDownloadListener;
-import com.bxj.manager.StorageManager;
 
-/**
- * 下载完成后要加通知 提醒 明天的版本就应该能内测
- * 
- * @author SunZhuo
- * 
- */
+import java.util.List;
+
 public class DownLoadTask extends AsyncTask<List<WebData>, Integer, Void> {
 	SlidingMenuRight view;
 	private OndDownloadListener listener;
@@ -58,20 +49,24 @@ public class DownLoadTask extends AsyncTask<List<WebData>, Integer, Void> {
 		super.onPostExecute(result);
 		NotificationManager mNotificationManager = (NotificationManager) App
 				.getContext().getSystemService(Context.NOTIFICATION_SERVICE);
-		Notification notification = new Notification(R.drawable.app_icon, null,
-				System.currentTimeMillis());
 		Intent intent = new Intent(App.getContext(),
 				MainActivity.class);
 		intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 		PendingIntent contentIntent = PendingIntent.getActivity(
 				App.getContext(), 0, intent,
 				PendingIntent.FLAG_CANCEL_CURRENT);
-		notification.setLatestEventInfo(App.getContext(),
-				App.getContext()
-						.getText(R.string.notification_title), App
-						.getContext().getText(R.string.notification_content),
-				contentIntent);
-		notification.flags |= Notification.FLAG_AUTO_CANCEL; // 点击清除按钮或点击通知后会自动消失		
+
+		NotificationCompat.Builder mBuilder =
+				new NotificationCompat.Builder(App.getContext())
+						.setSmallIcon(R.drawable.app_icon)
+						.setContentTitle(App.getContext()
+								.getText(R.string.notification_title))
+						.setContentText(App
+								.getContext().getText(R.string.notification_content))
+						.setContentIntent(contentIntent);
+		Notification notification = mBuilder.build();
+
+		notification.flags |= Notification.FLAG_AUTO_CANCEL; // 点击清除按钮或点击通知后会自动消失
 		// 以R.layout.layout_menu_right为ID 因为R文件不会重复
 		mNotificationManager.notify(R.layout.layout_menu_right, notification);
 		if (listener != null) {

@@ -19,18 +19,34 @@ android {
 
     signingConfigs {
         release {
-            storeFile file("../sunzhuo.jks")
-            storePassword System.getenv("KSTOREPWD")
-            keyAlias "kindlezhushou"
-            keyPassword System.getenv("KEYPWD")
+            storeFile file("../sunzhuo.keystore")
+            storePassword System.getenv("BXJSTOREPWD")
+            keyAlias "sunzhuo"
+            keyPassword System.getenv("BXJKEYPWD")
         }
     }
 
     buildTypes {
         release {
-            minifyEnabled true
-            proguardFiles 'proguard-project.txt'
+            minifyEnabled false
+            signingConfig signingConfigs.release
         }
+    }
+
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/LICENSE'
     }
 }
 

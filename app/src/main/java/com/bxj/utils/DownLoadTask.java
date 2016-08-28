@@ -16,6 +16,7 @@ import com.bxj.fragment.SlidingMenuRight;
 import com.bxj.manager.DownLoadMgr;
 import com.bxj.manager.DownLoadMgr.OndDownloadListener;
 
+import java.io.IOException;
 import java.util.List;
 
 public class DownLoadTask extends AsyncTask<List<WebData>, Integer, Void> {
@@ -37,7 +38,11 @@ public class DownLoadTask extends AsyncTask<List<WebData>, Integer, Void> {
 		WebData info;
 		for (int i = 0; i < params[0].size(); i++) {
 			info = params[0].get(i);
-			DownLoadMgr.getInstance().getHtmlAndSave(info, true);
+			try {
+				DownLoadMgr.getInstance().getHtmlAndSave(info, true);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 			int progress = (i + 1) * 100 / params[0].size();// 计算百分比
 			publishProgress(progress);
 		}

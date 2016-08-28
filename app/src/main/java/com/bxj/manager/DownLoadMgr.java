@@ -1,17 +1,16 @@
 package com.bxj.manager;
 
+import com.bxj.domain.WebData;
+import com.bxj.utils.DownLoadTask;
+import com.bxj.utils.FileStorageUtil;
+import com.bxj.utils.HttpUtil;
+import com.bxj.utils.NetUitl;
+
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
-
-import com.bxj.domain.WebData;
-import com.bxj.utils.DownLoadTask;
-import com.bxj.utils.FileStorageUtil;
-import com.bxj.utils.HttpUtil;
-import com.bxj.utils.LogUtil;
-import com.bxj.utils.NetUitl;
 
 public class DownLoadMgr {
 	/**
@@ -41,7 +40,7 @@ public class DownLoadMgr {
 
 	/**
 	 * 初始化下载任务类
-	 * 
+	 *
 	 * @param listener
 	 *            下载监听器
 	 */
@@ -62,7 +61,7 @@ public class DownLoadMgr {
 
 	/**
 	 * 开始下载
-	 * 
+	 *
 	 * @param list
 	 */
 	public void startDownLoadList(List list) {
@@ -90,7 +89,7 @@ public class DownLoadMgr {
 
 	/**
 	 * 根据URL 下载Html文件 并且保存到本地文件中
-	 * 
+	 *
 	 * @param url
 	 *            要下载的URL
 	 * @param saveHtmlFile
@@ -107,18 +106,14 @@ public class DownLoadMgr {
 		FileStorageUtil.writeInputStream(saveHtmlFile, htmlInputStream);
 	}
 
-	public void getHtmlAndSave(WebData info, Boolean isMoblieUrl) {
+	public void getHtmlAndSave(WebData info, Boolean isMoblieUrl) throws IOException {
 		InputStream is = HttpUtil
 				.getHtmlInputStream(info.getUrl(), isMoblieUrl);
 		write2File(info, is);
 	}
 
-	private void write2File(WebData info, InputStream is) {
+	private void write2File(WebData info, InputStream is) throws IOException {
 		File saveFile = StorageManager.getInstance().getDataFileByWebData(info);
-		try {
-			FileStorageUtil.writeInputStream(saveFile, is);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+        FileStorageUtil.writeInputStream(saveFile, is);
 	}
 }

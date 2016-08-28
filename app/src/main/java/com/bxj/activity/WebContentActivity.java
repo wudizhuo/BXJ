@@ -1,10 +1,5 @@
 package com.bxj.activity;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.InputStreamReader;
-
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -14,7 +9,6 @@ import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
-import android.view.WindowManager;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -32,6 +26,12 @@ import com.bxj.utils.ToastUtil;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
 import com.handmark.pulltorefresh.library.PullToRefreshWebView;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 /**
  * 此页面待办事项 1.webView 给路径 直接加载就行了 不用自己读进来 修改
@@ -166,7 +166,12 @@ public class WebContentActivity extends BaseActivity implements OnTouchListener 
 
 			@Override
 			protected Void doInBackground(WebData... params) {
-				DownLoadMgr.getInstance().getHtmlAndSave(params[0], true);
+				try {
+					DownLoadMgr.getInstance().getHtmlAndSave(params[0], true);
+				} catch (IOException e) {
+					e.printStackTrace();
+					ToastUtil.show("打开失败，请重试");
+				}
 				LogUtil.s("没有本地缓存 下载中");
 				return null;
 			}

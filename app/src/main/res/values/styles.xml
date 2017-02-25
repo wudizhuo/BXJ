@@ -85,21 +85,6 @@
         <item name="android:paddingTop">5dp</item>
     </style>
 
-    <!-- 下面是友盟需要的配置 -->
-    <style name="DashboardButton">
-        <item name="android:layout_gravity">center_vertical</item>
-        <item name="android:width">100dp</item>
-        <item name="android:height">100dp</item>
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:gravity">center</item>
-        <item name="android:drawablePadding">2dp</item>
-        <item name="android:textSize">@dimen/text_size_small</item>
-        <item name="android:textStyle">bold</item>
-        <item name="android:textColor">@color/accent_1</item>
-        <item name="android:background">@drawable/umeng_strock_bg_1</item>
-    </style>
-
     <style name="ActionBar">
         <item name="android:layout_width">fill_parent</item>
         <item name="android:layout_height">@dimen/actionbar_height</item>
@@ -125,8 +110,6 @@
     </style>
 
     <style name="ActionBarProgressBar" parent="@android:style/Widget.ProgressBar.Small"></style>
-    <!-- 上面是友盟需要的配置 -->
-
 
     <!-- 自适应宽高 -->
     <style name="wrap">

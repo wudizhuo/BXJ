@@ -21,11 +21,8 @@ import com.bxj.common.BaseFragment;
 import com.bxj.domain.BXJListData;
 import com.bxj.manager.DownLoadMgr;
 import com.bxj.manager.DownLoadMgr.OndDownloadListener;
-import com.bxj.manager.UpdateMgr;
-import com.bxj.manager.UpdateMgr.UpdateListener;
 import com.bxj.utils.LogUtil;
 import com.bxj.utils.StatServiceUtil;
-import com.bxj.utils.ToastUtil;
 import com.qihoo.updatesdk.lib.UpdateHelper;
 import com.umeng.fb.FeedbackAgent;
 
@@ -100,7 +97,6 @@ public class SlidingMenuRight extends BaseFragment implements OnClickListener,
 		isClickCheckUpdate = true;
 		showProgressDialog("正在检查更新...");
 		StatServiceUtil.trackEvent("检查更新");
-		UpdateMgr.getInstance().checkUpdate();
 		UpdateHelper.getInstance().manualUpdate(App.getContext().getPackageName());
 	}
 
@@ -141,30 +137,6 @@ public class SlidingMenuRight extends BaseFragment implements OnClickListener,
 		} else {
 			iv_setting_night.setBackgroundResource(R.drawable.setting_close);
 		}
-
-		/**
-		 * 检查更新 回调
-		 */
-		UpdateMgr.getInstance().setUpdateListener(new UpdateListener() {
-
-			@Override
-			public void onUpdateReturned(boolean hasNewVersion) {
-				if (hasNewVersion) {
-					unread.setVisibility(View.VISIBLE);
-				} else {
-					unread.setVisibility(View.GONE);
-				}
-				if (isClickCheckUpdate) {
-					if (hasNewVersion) {
-						ToastUtil.showInCenter("请更新版本！");
-					} else {
-						ToastUtil.showInCenter("当前已是最新版本");
-					}
-				}
-
-				dismissProgressDialog();
-			}
-		});
 	}
 
 	/**

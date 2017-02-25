@@ -7,4 +7,6 @@
     <color name="title_bar_bg">#b92021</color>
     <color name="page_bg">#EDF1F4</color>
 	<color name="text_color">#000</color>
+    <color name="accent_1">#ff29549f</color>
+    <color name="text_menu_press">#252525</color>
 </resources>

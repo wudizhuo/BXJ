@@ -2,7 +2,6 @@ package com.bxj.activity;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -14,14 +13,12 @@ import com.bxj.fragment.ContentBXJFragment;
 import com.bxj.fragment.SlidingMenuLeft;
 import com.bxj.fragment.SlidingMenuRight;
 import com.bxj.manager.StorageManager;
-import com.bxj.manager.UpdateMgr;
 import com.bxj.utils.StatServiceUtil;
 import com.bxj.utils.SystemUtils;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu.OnClosedListener;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu.OnOpenListener;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu.OnOpenedListener;
-import com.qihoo.updatesdk.lib.UpdateHelper;
 import com.tencent.android.tpush.XGIOperateCallback;
 import com.tencent.android.tpush.XGPushManager;
 import com.umeng.fb.FeedbackAgent;
@@ -117,7 +114,6 @@ public class MainActivity extends BaseActivity implements
 
 	private void appInit() {
 		App.getApp().appinit();
-		UpdateMgr.getInstance().checkUpdate();
 		if (!AppPreferences.getRegisterPush()) {
 			Context context = getApplicationContext();
 			XGPushManager.registerPush(context, new XGIOperateCallback() {

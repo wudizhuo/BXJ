@@ -66,17 +66,6 @@
             android:value="52d2aecc56240b219500c777" >
         </meta-data>
 
-        <!-- 自动更新服务 -->
-        <service
-            android:name="com.umeng.update.net.DownloadingService"
-            android:process=":DownloadingService" >
-        </service>
-
-        <activity
-            android:name="com.umeng.update.UpdateDialogActivity"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
-        </activity>
-
         <activity
             android:name="com.qihoo.updatesdk.lib.UpdateTipDialogActivity"
             android:exported="false"

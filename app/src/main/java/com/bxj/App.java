@@ -8,7 +8,6 @@ import android.support.v4.content.ContextCompat;
 import com.bxj.utils.LogUtil;
 import com.qihoo.updatesdk.lib.UpdateHelper;
 import com.umeng.analytics.MobclickAgent;
-import com.umeng.update.UmengUpdateAgent;
 
 import java.io.File;
 
@@ -45,9 +44,6 @@ public class App extends Application {
 		MobclickAgent.setDebugMode(BuildConfig.DEBUG);
 		// 使用在线配置功能
 		MobclickAgent.updateOnlineConfig(getContext());
-		// 检查友盟的res是否都复制进去了
-		UmengUpdateAgent.setUpdateCheckConfig(BuildConfig.DEBUG);
-		UmengUpdateAgent.setUpdateOnlyWifi(false);
 		getOnlineValue();
 	}
 

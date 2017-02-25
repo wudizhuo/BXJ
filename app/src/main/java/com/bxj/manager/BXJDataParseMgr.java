@@ -35,7 +35,7 @@ public class BXJDataParseMgr {
 	public List<? extends WebData> parse(File saveHtmlFile) throws IOException {
 		List<WebData> result = new ArrayList<WebData>();
 		FileInputStream in = new FileInputStream(saveHtmlFile);
-		Document doc = Jsoup.parse(in, "gb2312", AppConstants.URL_BXJ);
+		Document doc = Jsoup.parse(in, "utf-8", AppConstants.URL_BXJ);
 		// Document doc = Jsoup.connect(URL_MAIN).get();
 		Element table = doc.getElementById("pl");// BXJ table id为pl
 		Element tbody = table.child(1);// BXJ 里有2个table 第一个为帖子内容

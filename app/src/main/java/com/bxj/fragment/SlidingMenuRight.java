@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout.LayoutParams;
 import android.widget.TextView;
 
+import com.alibaba.sdk.android.feedback.impl.FeedbackAPI;
 import com.bxj.App;
 import com.bxj.AppConstants;
 import com.bxj.AppPreferences;
@@ -104,9 +105,7 @@ public class SlidingMenuRight extends BaseFragment implements OnClickListener,
 	 * 意见反馈的点击事件
 	 */
 	private void settingFeedback() {
-		StatServiceUtil.trackEvent("意见反馈");
-		FeedbackAgent agent = new FeedbackAgent(getActivity());
-		agent.startFeedbackActivity();
+		FeedbackAPI.openFeedbackActivity();
 	}
 
 	/**

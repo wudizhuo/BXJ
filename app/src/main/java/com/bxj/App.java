@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.support.v4.content.ContextCompat;
 
+import com.alibaba.sdk.android.feedback.impl.FeedbackAPI;
 import com.bxj.utils.LogUtil;
 import com.qihoo.updatesdk.lib.UpdateHelper;
 import com.umeng.analytics.MobclickAgent;
@@ -32,6 +33,7 @@ public class App extends Application {
 		UpdateHelper.getInstance().init(getApplicationContext(), ContextCompat.getColor(getContext(), R.color.primary));
 		UpdateHelper.getInstance().setDebugMode(BuildConfig.DEBUG);
 		UpdateHelper.getInstance().autoUpdate(getContext().getPackageName());
+		FeedbackAPI.init(this, "23653497");
 	}
 
 	/**

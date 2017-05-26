@@ -238,18 +238,9 @@ public class ContentBXJFragment extends BaseFragment implements
 				+ INDEX);
 		// URL_MAIN = "http://bbs.hupu.com/bxj-" + INDEX;
 		String url = URL_MAIN + "-" + INDEX;
-		DownLoadMgr.getInstance().getHtmlAndSave(url, saveHtmlFile, false);
+		DownLoadMgr.getInstance().getHtmlAndSave(url, saveHtmlFile);
 		return (List<BXJListData>) BXJDataParseMgr.getInstance().parse(
 				saveHtmlFile);
-	}
-
-	/**
-	 * 用于下载时候调用获取下载的内容
-	 * 
-	 * @return
-	 */
-	public List<BXJListData> getDataList() {
-		return showDataList;
 	}
 
 	/**

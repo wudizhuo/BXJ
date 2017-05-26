@@ -13,7 +13,6 @@ import com.bxj.AppConstants;
 import com.bxj.AppPreferences;
 import com.bxj.R;
 import com.bxj.common.BaseFragment;
-import com.bxj.utils.LogUtil;
 import com.bxj.utils.StatServiceUtil;
 import com.bxj.utils.ToastUtil;
 
@@ -53,11 +52,6 @@ public class SlidingMenuLeft extends BaseFragment implements OnClickListener {
 
 		mCallbacks = (Callbacks) activity;
 	}
-
-	@Override
-	public void onStart() {
-		super.onStart();
-	}
 	
 	@Override
 	public void onClick(View v) {
@@ -88,11 +82,5 @@ public class SlidingMenuLeft extends BaseFragment implements OnClickListener {
 		} else {
 			iv_setting_light.setBackgroundResource(R.drawable.setting_close);
 		}
-	}
-
-	@Override
-	public void onPause() {
-		super.onPause();
-		LogUtil.s("SlidingMenuLeft--onPause");
 	}
 }

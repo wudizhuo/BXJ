@@ -32,13 +32,6 @@
     <include layout="@layout/divider_line_h" />
 
     <TextView
-        android:id="@+id/tv_download"
-        style="@style/menu_text"
-        android:text="离线下载" />
-
-    <include layout="@layout/divider_line_h" />
-
-    <TextView
         android:id="@+id/tv_setting"
         style="@style/menu_text"
         android:text="设置" />

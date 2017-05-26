@@ -29,7 +29,7 @@ public abstract class BaseActivity extends FragmentActivity {
 
 	/** 获取intent附加数据 */
 	protected void getIntentParams() {
-	};
+	}
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

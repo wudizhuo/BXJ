@@ -19,6 +19,7 @@ import com.bxj.manager.DownLoadMgr.OndDownloadListener;
 import java.io.IOException;
 import java.util.List;
 
+@Deprecated
 public class DownLoadTask extends AsyncTask<List<WebData>, Integer, Void> {
 	SlidingMenuRight view;
 	private OndDownloadListener listener;

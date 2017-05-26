@@ -1,25 +1,21 @@
 package com.bxj.manager;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import com.bxj.AppConstants;
+import com.bxj.domain.BXJListData;
+import com.bxj.domain.WebData;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-import com.bxj.AppConstants;
-import com.bxj.domain.BXJListData;
-import com.bxj.domain.WebData;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class BXJDataParseMgr {
-
-	/**
-	 * 唯一实例
-	 */
 	private static BXJDataParseMgr mInstance;
 
 	private BXJDataParseMgr() {
@@ -33,7 +29,7 @@ public class BXJDataParseMgr {
 	}
 
 	public List<? extends WebData> parse(File saveHtmlFile) throws IOException {
-		List<WebData> result = new ArrayList<WebData>();
+		List<WebData> result = new ArrayList<>();
 		FileInputStream in = new FileInputStream(saveHtmlFile);
 		Document doc = Jsoup.parse(in, "utf-8", AppConstants.URL_BXJ);
 		// Document doc = Jsoup.connect(URL_MAIN).get();

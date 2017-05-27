@@ -10,7 +10,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout.LayoutParams;
 import android.widget.TextView;
 
-import com.alibaba.sdk.android.feedback.impl.FeedbackAPI;
 import com.bxj.App;
 import com.bxj.AppConstants;
 import com.bxj.AppPreferences;
@@ -20,6 +19,7 @@ import com.bxj.common.BaseActivity;
 import com.bxj.common.BaseFragment;
 import com.bxj.utils.LogUtil;
 import com.bxj.utils.StatServiceUtil;
+import com.bxj.utils.ToastUtil;
 import com.qihoo.updatesdk.lib.UpdateHelper;
 
 public class SlidingMenuRight extends BaseFragment implements OnClickListener{
@@ -54,7 +54,7 @@ public class SlidingMenuRight extends BaseFragment implements OnClickListener{
                 checkUpdate();
                 break;
             case R.id.feedback:
-                FeedbackAPI.openFeedbackActivity();
+                ToastUtil.show("请您反馈到我的微博'无敌卓'，谢谢支持");
                 break;
             default:
                 break;

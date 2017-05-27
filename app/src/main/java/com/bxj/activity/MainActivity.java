@@ -21,7 +21,6 @@ import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu.OnOpenListener;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu.OnOpenedListener;
 import com.tencent.android.tpush.XGIOperateCallback;
 import com.tencent.android.tpush.XGPushManager;
-import com.umeng.fb.FeedbackAgent;
 
 public class MainActivity extends BaseActivity implements
 		SlidingMenuLeft.Callbacks {
@@ -129,9 +128,6 @@ public class MainActivity extends BaseActivity implements
 				}
 			});
 		}
-
-		FeedbackAgent agent = new FeedbackAgent(this);
-		agent.sync();
 	}
 
 	@Override

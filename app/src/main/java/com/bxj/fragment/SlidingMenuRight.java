@@ -22,13 +22,7 @@ import com.bxj.utils.LogUtil;
 import com.bxj.utils.StatServiceUtil;
 import com.qihoo.updatesdk.lib.UpdateHelper;
 
-/**
- * 1 在设置页面添加清除缓存功能 2 添加设置页面
- *
- * @author SunZhuo
- */
 public class SlidingMenuRight extends BaseFragment implements OnClickListener{
-    private TextView tv_download;
     private TextView tv_setting;
     private ImageView iv_setting_night;
 
@@ -38,10 +32,8 @@ public class SlidingMenuRight extends BaseFragment implements OnClickListener{
         View view = inflater.inflate(R.layout.fragment_slidingright, null);
         view.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT,
                 LayoutParams.MATCH_PARENT));
-        tv_download = (TextView) view.findViewById(R.id.tv_download);
         tv_setting = (TextView) view.findViewById(R.id.tv_setting);
         iv_setting_night = (ImageView) view.findViewById(R.id.iv_setting_night);
-        tv_download.setOnClickListener(this);
         tv_setting.setOnClickListener(this);
         view.findViewById(R.id.feedback).setOnClickListener(this);
         view.findViewById(R.id.check_update).setOnClickListener(this);
@@ -53,7 +45,7 @@ public class SlidingMenuRight extends BaseFragment implements OnClickListener{
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.tv_setting:
-                toSetting();
+                startActivity(new Intent(mContext, SettingActivity.class));
                 break;
             case R.id.setting_night:
                 clickNightMode();
@@ -62,7 +54,7 @@ public class SlidingMenuRight extends BaseFragment implements OnClickListener{
                 checkUpdate();
                 break;
             case R.id.feedback:
-                settingFeedback();
+                FeedbackAPI.openFeedbackActivity();
                 break;
             default:
                 break;
@@ -75,16 +67,6 @@ public class SlidingMenuRight extends BaseFragment implements OnClickListener{
         UpdateHelper.getInstance().manualUpdate(App.getContext().getPackageName());
     }
 
-    /**
-     * 意见反馈的点击事件
-     */
-    private void settingFeedback() {
-        FeedbackAPI.openFeedbackActivity();
-    }
-
-    /**
-     * 点击夜间模式的点击事件
-     */
     private void clickNightMode() {
         AppConstants.SETTING_MODE_NIGHT = !AppConstants.SETTING_MODE_NIGHT;
         initBtn();
@@ -110,13 +92,6 @@ public class SlidingMenuRight extends BaseFragment implements OnClickListener{
         } else {
             iv_setting_night.setBackgroundResource(R.drawable.setting_close);
         }
-    }
-
-    /**
-     * 跳转到设置界面
-     */
-    private void toSetting() {
-        startActivity(new Intent(mContext, SettingActivity.class));
     }
 
 }

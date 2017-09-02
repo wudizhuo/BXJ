@@ -29,32 +29,13 @@ public class App extends Application {
     public void appinit() {
     }
 
-    /**
-     * 检查应用配置
-     */
     private void checkConfig() {
         initFileDir();
         // 友盟的配置
         // 调试模式
         MobclickAgent.setDebugMode(BuildConfig.DEBUG);
-        // 使用在线配置功能
-        MobclickAgent.updateOnlineConfig(getContext());
-        getOnlineValue();
     }
 
-    /**
-     * 得到友盟的在线配置参数
-     * <p>
-     * 1，开启界面的图片的下载地址
-     */
-    private void getOnlineValue() {
-        String value = MobclickAgent.getConfigParams(getContext(), "wallpaper");
-        // TODO 开启子线程下载wallpaper 在wifi情况下
-    }
-
-    /**
-     * 初始化文件目录
-     */
     private void initFileDir() {
         try {
             File appDir = new File(getContext().getExternalFilesDir(null),

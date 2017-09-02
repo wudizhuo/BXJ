@@ -42,7 +42,6 @@
         <activity
             android:name="com.bxj.activity.MainActivity"
             android:screenOrientation="portrait" />
-        <activity android:name="com.umeng.fb.ConversationActivity" />
         <activity
             android:name="com.bxj.activity.SettingActivity"
             android:screenOrientation="portrait" />
@@ -61,17 +60,6 @@
             android:name="UMENG_APPKEY"
             android:value="52d2aecc56240b219500c777" >
         </meta-data>
-
-        <activity
-            android:name="com.qihoo.updatesdk.lib.UpdateTipDialogActivity"
-            android:exported="false"
-            android:screenOrientation="portrait"
-            android:configChanges="keyboardHidden|orientation|screenSize"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar"
-            />
-        <service
-            android:name="com.qihoo.appstore.updatelib.CheckUpdateService"
-            android:exported="false" />
 
         <!-- 【必须】 信鸽receiver广播接收 -->
         <receiver
@@ -101,15 +89,6 @@
             android:exported="true"
             android:persistent="true"
             android:process=":xg_service_v2" />
-
-        <!-- 【必须】 通知service，此选项有助于提高抵达率 -->
-        <service
-            android:name="com.tencent.android.tpush.rpc.XGRemoteService"
-            android:exported="true" >
-            <intent-filter>
-                <action android:name="com.bxj.PUSH_ACTION" />
-            </intent-filter>
-        </service>
 
         <!-- 【必须】 请将YOUR_ACCESS_ID修改为APP的AccessId，“21”开头的10位数字，中间没空格 -->
         <meta-data

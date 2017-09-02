@@ -10,7 +10,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout.LayoutParams;
 import android.widget.TextView;
 
-import com.bxj.App;
 import com.bxj.AppConstants;
 import com.bxj.AppPreferences;
 import com.bxj.R;
@@ -20,7 +19,6 @@ import com.bxj.common.BaseFragment;
 import com.bxj.utils.LogUtil;
 import com.bxj.utils.StatServiceUtil;
 import com.bxj.utils.ToastUtil;
-import com.qihoo.updatesdk.lib.UpdateHelper;
 
 public class SlidingMenuRight extends BaseFragment implements OnClickListener{
     private TextView tv_setting;
@@ -64,7 +62,6 @@ public class SlidingMenuRight extends BaseFragment implements OnClickListener{
     private void checkUpdate() {
         showProgressDialog("正在检查更新...");
         StatServiceUtil.trackEvent("检查更新");
-        UpdateHelper.getInstance().manualUpdate(App.getContext().getPackageName());
     }
 
     private void clickNightMode() {

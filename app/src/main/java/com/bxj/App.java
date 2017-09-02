@@ -3,10 +3,8 @@ package com.bxj;
 import android.app.Application;
 import android.content.Context;
 import android.content.pm.PackageManager.NameNotFoundException;
-import android.support.v4.content.ContextCompat;
 
 import com.bxj.utils.LogUtil;
-import com.qihoo.updatesdk.lib.UpdateHelper;
 import com.umeng.analytics.MobclickAgent;
 
 import java.io.File;
@@ -29,9 +27,6 @@ public class App extends Application {
     }
 
     public void appinit() {
-        UpdateHelper.getInstance().init(getApplicationContext(), ContextCompat.getColor(getContext(), R.color.primary));
-        UpdateHelper.getInstance().setDebugMode(BuildConfig.DEBUG);
-        UpdateHelper.getInstance().autoUpdate(getContext().getPackageName());
     }
 
     /**

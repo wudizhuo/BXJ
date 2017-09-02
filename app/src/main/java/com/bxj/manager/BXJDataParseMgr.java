@@ -33,16 +33,13 @@ public class BXJDataParseMgr {
 		FileInputStream in = new FileInputStream(saveHtmlFile);
 		Document doc = Jsoup.parse(in, "utf-8", AppConstants.URL_BXJ);
 		// Document doc = Jsoup.connect(URL_MAIN).get();
-		Element table = doc.getElementById("pl");// BXJ table id为pl
-		Element tbody = table.child(1);// BXJ 里有2个table 第一个为帖子内容
-		Elements trs = tbody.children();// 所有的表行
-		for (Element tr : trs) {// 遍历
+		Elements lis = doc.select(".show-list li");
+		for (Element li : lis) {// 遍历
 			// 获取p_title 包括所有的帖子信息
-			Element titleUrl = tr.getElementsByClass("p_title")
-					.select("a[id][href]").get(0);
-			Element replyCount = tr.getElementsByClass("p_re").get(0);// 回复数 标签
+			Element titleUrl = li.select(".titlelink a").first();
+			Element replyCount = li.select(".ansour").first();// 回复数 标签
 			// 亮贴数 标签
-			Elements light_r = tr.getElementsByClass("light_r").select(
+			Elements light_r = li.getElementsByClass("light_r").select(
 					"a[title]");
 			BXJListData data = new BXJListData();
 			if (light_r != null && light_r.size() > 0) {

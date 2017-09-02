@@ -1,17 +1,21 @@
 package com.bxj.activity;
 
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
+import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.ProgressBar;
 
 import com.bxj.AppConstants;
 import com.bxj.AppPreferences;
@@ -28,17 +32,13 @@ import com.handmark.pulltorefresh.library.PullToRefreshWebView;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-/**
- * 此页面待办事项 1.webView 给路径 直接加载就行了 不用自己读进来 修改
- *
- * @author SunZhuo
- */
 public class WebContentActivity extends BaseActivity implements OnTouchListener {
     private String webContent;// 显示的网页的本地内容
     private PullToRefreshWebView mPullRefreshWebView;
     private WebView webView;// 用于显示的webview
     private static final int SET_VIEW = 1;
     private WebData webData;
+    private ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +49,7 @@ public class WebContentActivity extends BaseActivity implements OnTouchListener 
         mPullRefreshWebView.setOnRefreshListener(onRefreshListener);
         webView = mPullRefreshWebView.getRefreshableView();
         webView.setOnTouchListener(this);
-
+        progressBar = (ProgressBar) findViewById(R.id.progressBar);
         WebSettings settings = webView.getSettings();
         settings.setJavaScriptEnabled(true);// 支持js脚本
         settings.setSupportZoom(true);// 支持缩放
@@ -58,6 +58,13 @@ public class WebContentActivity extends BaseActivity implements OnTouchListener 
         settings.setLoadWithOverviewMode(true);
 
         webView.setWebViewClient(new LoadingWebViewClient());
+        webView.setWebChromeClient(new WebChromeClient() {
+            @Override
+            public void onProgressChanged(WebView view, int newProgress) {
+                progressBar.setProgress(newProgress);
+                super.onProgressChanged(view, newProgress);
+            }
+        });
         if (!TextUtils.isEmpty(webData.getUrl())) {
             webView.loadUrl(webData.getUrl());
         }
@@ -97,8 +104,8 @@ public class WebContentActivity extends BaseActivity implements OnTouchListener 
     private class LoadingWebViewClient extends WebViewClient {
         @Override
         public void onPageStarted(WebView view, String url, Bitmap favicon) {
-            showProgressDialog();
             super.onPageStarted(view, url, favicon);
+            progressBar.setVisibility(View.VISIBLE);
         }
 
         @Override
@@ -121,6 +128,7 @@ public class WebContentActivity extends BaseActivity implements OnTouchListener 
         @Override
         public void onPageFinished(WebView view, String url) {
             dismissProgressDialog();
+            progressBar.setVisibility(View.GONE);
             super.onPageFinished(view, url);
         }
     }

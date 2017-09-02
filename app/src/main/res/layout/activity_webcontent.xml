@@ -2,7 +2,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="?attr/page_bg"
-    android:orientation="vertical" >
+    android:orientation="vertical">
 
     <include
         android:id="@+id/title_bar"
@@ -10,8 +10,7 @@
 
     <FrameLayout
         style="@style/fill"
-        android:layout_below="@+id/title_bar" >
-
+        android:layout_below="@+id/title_bar">
         <com.handmark.pulltorefresh.library.PullToRefreshWebView
             android:id="@+id/webcontent_wb"
             android:layout_width="fill_parent"
@@ -23,6 +22,13 @@
             android:background="#80000000"
             android:clickable="false"
             android:focusable="false" />
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="@android:style/Widget.ProgressBar.Horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="2.5dp"
+            />
     </FrameLayout>
 
 </RelativeLayout>

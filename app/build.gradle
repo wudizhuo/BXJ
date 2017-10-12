@@ -12,12 +12,20 @@ android {
         }
     }
 
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
     defaultConfig {
         applicationId "com.bxj"
         minSdkVersion 9
         targetSdkVersion 18
         versionCode 11
         versionName "1.9"
+        jackOptions {
+            enabled true
+        }
     }
 
     signingConfigs {

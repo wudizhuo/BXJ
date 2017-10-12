@@ -13,9 +13,6 @@ import com.bxj.manager.StorageManager;
 import com.bxj.utils.StatServiceUtil;
 import com.bxj.utils.SystemUtils;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
-import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu.OnClosedListener;
-import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu.OnOpenListener;
-import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu.OnOpenedListener;
 
 public class MainActivity extends BaseActivity implements
 		SlidingMenuLeft.Callbacks {
@@ -68,41 +65,21 @@ public class MainActivity extends BaseActivity implements
 				.beginTransaction()
 				.replace(R.id.slidingmenu_right, new SlidingMenuRight(),
 						RIGHT_FRAGMENT).commit();
-		slidingmenu.setOnClosedListener(new OnClosedListener() {
+		slidingmenu.setOnClosedListener(() -> contentFragment.settingChanged());
+		slidingmenu.setOnOpenedListener(() -> {
+            if (isSecondaryOpen) {
+                isSecondaryOpen = false;
+            } else {
+                StatServiceUtil.trackEvent("打开左菜单");
+            }
+        });
 
-			@Override
-			public void onClosed() {
-				contentFragment.settingChanged();
-			}
-		});
-		slidingmenu.setOnOpenedListener(new OnOpenedListener() {
+		slidingmenu.setSecondaryOnOpenListner(() -> {
+            isSecondaryOpen = true;
+            StatServiceUtil.trackEvent("打开右菜单");
+        });
 
-			@Override
-			public void onOpened() {
-				if (isSecondaryOpen) {
-					isSecondaryOpen = false;
-				} else {
-					StatServiceUtil.trackEvent("打开左菜单");
-				}
-			}
-		});
-
-		slidingmenu.setSecondaryOnOpenListner(new OnOpenListener() {
-
-			@Override
-			public void onOpen() {
-				isSecondaryOpen = true;
-				StatServiceUtil.trackEvent("打开右菜单");
-			}
-		});
-
-		slidingmenu.post(new Runnable() {
-
-			@Override
-			public void run() {
-				appInit();
-			}
-		});
+		slidingmenu.post(() -> appInit());
 
 	}
 

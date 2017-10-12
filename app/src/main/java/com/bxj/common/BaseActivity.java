@@ -148,34 +148,6 @@ public abstract class BaseActivity extends FragmentActivity {
 		}
 	}
 
-	// public void addGuideImage(int guideResourceId) {
-	// View viewParent = getWindow().getDecorView();
-	// if (viewParent instanceof FrameLayout) {
-	// final FrameLayout frameLayout = (FrameLayout) viewParent;
-	// if (guideResourceId != 0) {// 设置了引导图片
-	// ImageView guideImage = new ImageView(this);
-	// guideImage.setVisibility(View.INVISIBLE);
-	// FrameLayout.LayoutParams params = new
-	// FrameLayout.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT,
-	// ViewGroup.LayoutParams.FILL_PARENT);
-	// guideImage.setLayoutParams(params);
-	// guideImage.setScaleType(ScaleType.FIT_XY);
-	// guideImage.setImageResource(guideResourceId);
-	// guideImage.setOnClickListener(new View.OnClickListener() {
-	// @Override
-	// public void onClick(View v) {
-	// frameLayout.removeView(guideImage);
-	// guideImage.getDrawable().setCallback(null);
-	// VanclPreferences.setIsGuided(getApplicationContext(),
-	// BasicActivity.this.getClass().getName());
-	// }
-	// });
-	// frameLayout.addView(guideImage);// 添加引导图片
-	//
-	// }
-	// }
-	// }
-
 	public void onBackPressed(View v) {
 		LogUtil.s("btn_title_left");
 		onBackPressed();

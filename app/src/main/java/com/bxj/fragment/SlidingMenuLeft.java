@@ -1,6 +1,6 @@
 package com.bxj.fragment;
 
-import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -43,14 +43,13 @@ public class SlidingMenuLeft extends BaseFragment implements OnClickListener {
 	}
 
 	@Override
-	public void onAttach(Activity activity) {
-		super.onAttach(activity);
-		if (!(activity instanceof Callbacks)) {
+	public void onAttach(Context context) {
+		super.onAttach(context);
+		if (!(context instanceof Callbacks)) {
 			throw new IllegalStateException(
 					"Activity must implement fragment's callbacks.");
 		}
-
-		mCallbacks = (Callbacks) activity;
+		mCallbacks = (Callbacks) context;
 	}
 	
 	@Override

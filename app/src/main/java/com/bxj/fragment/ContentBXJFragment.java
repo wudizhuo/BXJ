@@ -11,7 +11,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.bxj.AppConstants;
-import com.bxj.AppPreferences;
 import com.bxj.R;
 import com.bxj.activity.MainActivity;
 import com.bxj.adpter.BxjListAdpter;
@@ -69,9 +68,6 @@ public class ContentBXJFragment extends BaseFragment implements
         containerView.setLayoutParams(new LayoutParams(
                 LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
         emptyView = inflater.inflate(R.layout.view_content_empty, null);
-        if (AppPreferences.getHasSlidingGuide()) {
-            // 显示guide
-        }
         pullToRefreshListView = (PullToRefreshListView) containerView
                 .findViewById(R.id.contentList);
         pullToRefreshListView.setMode(Mode.BOTH);

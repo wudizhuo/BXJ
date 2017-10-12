@@ -56,11 +56,8 @@ public class StorageManager {
 	 * @return
 	 */
 	public static boolean existSDcard() {
-		if (android.os.Environment.MEDIA_MOUNTED.equals(android.os.Environment
-				.getExternalStorageState())) {
-			return true;
-		} else
-			return false;
+		return android.os.Environment.MEDIA_MOUNTED.equals(android.os.Environment
+				.getExternalStorageState());
 	}
 
 }

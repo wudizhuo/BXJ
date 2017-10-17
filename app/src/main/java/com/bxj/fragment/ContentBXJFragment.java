@@ -66,6 +66,10 @@ public class ContentBXJFragment extends BaseFragment implements
         containerView.setLayoutParams(new LayoutParams(
                 LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
         emptyView = inflater.inflate(R.layout.view_content_empty, null);
+        if (NetUitl.isConnected()) {
+            ((TextView)emptyView.findViewById(R.id.text1)).setText("可能是网站改版或停服");
+            ((TextView)emptyView.findViewById(R.id.text2)).setText("请查看电脑版网站是否能正常打开，如网站正常，请使用右侧菜单反馈作者 升级版本");
+        }
         pullToRefreshListView = (PullToRefreshListView) containerView
                 .findViewById(R.id.contentList);
         pullToRefreshListView.setMode(Mode.BOTH);

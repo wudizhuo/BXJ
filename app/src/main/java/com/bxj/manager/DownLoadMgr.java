@@ -1,20 +1,24 @@
 package com.bxj.manager;
 
 import com.bxj.APIService;
+import com.bxj.App;
 import com.bxj.utils.FileStorageUtil;
+import com.bxj.utils.LogUtil;
 import com.bxj.utils.NetUitl;
 
 import java.io.File;
 import java.io.IOException;
 
-import retrofit2.Retrofit;
+import javax.inject.Inject;
 
 public class DownLoadMgr {
     private static DownLoadMgr mInstance;
-    private APIService apiservice;
+
+    @Inject
+    APIService apiservice;
 
     private DownLoadMgr() {
-        apiservice = new Retrofit.Builder().baseUrl("http://bbs.hupu.com/").build().create(APIService.class);
+        App.getInstance().getAppComponent().inject(this);
     }
 
     public static DownLoadMgr getInstance() {
@@ -28,6 +32,7 @@ public class DownLoadMgr {
         if (!NetUitl.isConnected()) {
             throw new IOException();
         }
+        LogUtil.s("url-----" + url);
         FileStorageUtil.writeInputStream(saveHtmlFile, apiservice.getContent(url).execute().body().byteStream());
     }
 }

@@ -158,6 +158,7 @@ public class ContentBXJFragment extends BaseFragment implements
 
         @Override
         public void onError(@NonNull Throwable e) {
+            e.printStackTrace();
             if (ISREFRESHING) {
                 pullToRefreshListView.onRefreshComplete();
                 ISREFRESHING = false;

@@ -4,7 +4,9 @@ import android.app.Application;
 import android.content.Context;
 import android.content.pm.PackageManager.NameNotFoundException;
 
-import com.bxj.utils.LogUtil;
+import com.bxj.injection.AppComponent;
+import com.bxj.injection.AppModule;
+import com.bxj.injection.DaggerAppComponent;
 import com.umeng.analytics.MobclickAgent;
 
 import java.io.File;
@@ -13,13 +15,27 @@ public class App extends Application {
     private static Context applicationContext;
     private static App app;
 
+    protected AppComponent appComponent;
+
+    public static App getInstance() {
+        return app;
+    }
+
     @Override
     public void onCreate() {
         super.onCreate();
+        appComponent = DaggerAppComponent.builder()
+                .appModule(new AppModule(this))
+                .build();
+        appComponent.inject(this);
         applicationContext = this.getApplicationContext();
         app = this;
-        LogUtil.s("BXJApplication 创建啦");
         checkConfig();
+    }
+
+
+    public AppComponent getAppComponent() {
+        return appComponent;
     }
 
     public static App getApp() {

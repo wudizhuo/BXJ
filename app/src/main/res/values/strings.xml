@@ -11,6 +11,7 @@
     <string name="feedback_hint">欢迎在这发表宝贵意见哦~ \n您每一条意见都会看到并采取的，也可以到微博下（微博地址在关于页面）留言呀。</string>
     <string name="input_invaild">输入不能为空</string>
     <string name="feedback_sussced">提交成功！</string>
+    <string name="base_url">http://bbs.hupu.com/</string>
 
     <!-- 下面是友盟需要的配置 -->
     <string name="umeng_example_home_btn_analytics">统计分析</string>

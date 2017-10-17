@@ -5,12 +5,6 @@ import com.bxj.AppConstants;
 
 import java.io.File;
 
-/**
- * 目录管理类
- * 
- * @author SunZhuo
- * 
- */
 public class StorageManager {
 
 	private static StorageManager mInstance = null;
@@ -18,11 +12,6 @@ public class StorageManager {
 	private StorageManager() {
 	}
 
-	/**
-	 * 返回单例对象
-	 * 
-	 * @return
-	 */
 	public static StorageManager getInstance() {
 		if (null == mInstance) {
 			mInstance = new StorageManager();
@@ -31,8 +20,7 @@ public class StorageManager {
 	}
 
 	public File getOfflineDataDir() {
-		File result = null;
-		result = new File(
+		File result = new File(
 				App.getContext().getExternalFilesDir(null),
 				AppConstants.OFFLINE_DIR);
 		if (!result.exists()) {
@@ -42,19 +30,13 @@ public class StorageManager {
 	}
 
 	public File getTypeDir(String urlType) {
-		File result = null;
-		result = new File(getOfflineDataDir(), urlType);
+		File result = new File(getOfflineDataDir(), urlType);
 		if (!result.exists()) {
 			result.mkdirs();
 		}
 		return result;
 	}
 
-	/**
-	 * 判断存储卡是否存在
-	 * 
-	 * @return
-	 */
 	public static boolean existSDcard() {
 		return android.os.Environment.MEDIA_MOUNTED.equals(android.os.Environment
 				.getExternalStorageState());

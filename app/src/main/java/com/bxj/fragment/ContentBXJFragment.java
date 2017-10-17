@@ -19,7 +19,6 @@ import com.bxj.domain.BXJListData;
 import com.bxj.manager.BXJDataParseMgr;
 import com.bxj.manager.DownLoadMgr;
 import com.bxj.manager.StorageManager;
-import com.bxj.utils.LogUtil;
 import com.bxj.utils.NetUitl;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.Mode;
@@ -32,7 +31,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import io.reactivex.Observable;
-import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -53,7 +51,7 @@ public class ContentBXJFragment extends BaseFragment implements
     // 表示是否是下拉刷新状态
     public static Boolean ISREFRESHING = false;
 
-    private static List<BXJListData> showDataList = new ArrayList<BXJListData>();
+    private static List<BXJListData> showDataList = new ArrayList<>();
     private List<BXJListData> dataList;
     private ListView contentList;
     private BxjListAdpter mAdpter;
@@ -100,18 +98,10 @@ public class ContentBXJFragment extends BaseFragment implements
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         if (AppConstants.isNeedRestore) {
-            LogUtil.s("--onReInitContent---");
             onReInitContent();
         } else {
-            LogUtil.s("--initContent---");
             initContent();
         }
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        LogUtil.s("onPause--暂停了");
     }
 
     public void settingChanged() {
@@ -130,9 +120,6 @@ public class ContentBXJFragment extends BaseFragment implements
         }
     }
 
-    /**
-     * 设置修改等 需要重新从本地加载新设置的内容
-     */
     private void onReInitContent() {
         if (mAdpter == null) {
             mAdpter = new BxjListAdpter(mContext, showDataList);
@@ -142,16 +129,10 @@ public class ContentBXJFragment extends BaseFragment implements
         }
     }
 
-    /**
-     * 从本地文件初始数据
-     */
     private void initContentFromLocal() {
         getBXJContent(false);
     }
 
-    /**
-     * 从网络初始数据
-     */
     private void initContentFromNet() {
         // 第一次打开相当于是一次下拉刷新
         showProgressDialog();
@@ -193,23 +174,20 @@ public class ContentBXJFragment extends BaseFragment implements
     };
 
     private void download(final Boolean isGetFromNet) {
-        ObservableOnSubscribe<Void> fetchData = new ObservableOnSubscribe<Void>() {
-            @Override
-            public void subscribe(@NonNull ObservableEmitter<Void> emitter) throws Exception {
-                if (isGetFromNet && NetUitl.isConnected()) {
-                    dataList = getNetData();
-                } else {
-                    dataList = getLocalData();
-                }
-                if (ISREFRESHING) {
-                    pullToRefreshListView.onRefreshComplete();
-                    ISREFRESHING = false;
-                }
-                emitter.onComplete();
+        ObservableOnSubscribe<Void> fetchData = emitter -> {
+            if (isGetFromNet && NetUitl.isConnected()) {
+                dataList = getNetData();
+            } else {
+                dataList = getLocalData();
             }
+            if (ISREFRESHING) {
+                pullToRefreshListView.onRefreshComplete();
+                ISREFRESHING = false;
+            }
+            emitter.onComplete();
         };
 
-        Observable.create(fetchData).subscribeOn(Schedulers.newThread())
+        Observable.create(fetchData).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(observer);
     }
@@ -233,9 +211,6 @@ public class ContentBXJFragment extends BaseFragment implements
                 saveHtmlFile);
     }
 
-    /**
-     * 更新页面数据
-     */
     public void updateListData() {
         // 适应上拉刷新和第一次启动的情况
         if (INDEX == 1) {
@@ -267,7 +242,6 @@ public class ContentBXJFragment extends BaseFragment implements
 
     @Override
     public void onPullDownToRefresh(PullToRefreshBase refreshView) {
-        LogUtil.s("下拉刷新");
         INDEX = 1;
         ISREFRESHING = true;
         getBXJContent(true);
@@ -275,7 +249,6 @@ public class ContentBXJFragment extends BaseFragment implements
 
     @Override
     public void onPullUpToRefresh(PullToRefreshBase refreshView) {
-        LogUtil.s("上拉刷新");
         INDEX++;
         ISREFRESHING = true;
         getBXJContent(true);
@@ -283,15 +256,9 @@ public class ContentBXJFragment extends BaseFragment implements
 
     ;
 
-    /**
-     * 返回键按下
-     *
-     * @return
-     */
     public boolean onBackPressed() {
         if (pullToRefreshListView.isRefreshing()) {
             pullToRefreshListView.onRefreshComplete();
-            LogUtil.s("-----MainPageFragment--isRefreshing---onBackPressed-----");
             return true;
         }
         return false;

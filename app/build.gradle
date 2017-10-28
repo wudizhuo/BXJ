@@ -34,8 +34,8 @@ android {
         applicationId "com.bxj"
         minSdkVersion 9
         targetSdkVersion 18
-        versionCode 12
-        versionName "1.9.1"
+        versionCode 15
+        versionName "1.9.2"
     }
 
     signingConfigs {

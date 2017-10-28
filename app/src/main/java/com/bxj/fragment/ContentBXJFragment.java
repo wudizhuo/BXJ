@@ -173,6 +173,10 @@ public class ContentBXJFragment extends BaseFragment implements
 
         @Override
         public void onComplete() {
+            if (ISREFRESHING) {
+                pullToRefreshListView.onRefreshComplete();
+                ISREFRESHING = false;
+            }
             dismissProgressDialog();
             updateListData();
         }
@@ -184,10 +188,6 @@ public class ContentBXJFragment extends BaseFragment implements
                 dataList = getNetData();
             } else {
                 dataList = getLocalData();
-            }
-            if (ISREFRESHING) {
-                pullToRefreshListView.onRefreshComplete();
-                ISREFRESHING = false;
             }
             emitter.onComplete();
         };
